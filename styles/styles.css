@@ -1,0 +1,65 @@
+
+.center{
+		text-align: center;
+		align: center;
+}
+
+/*
+	changes specific attributes of body contents
+*/
+a:hover{
+	color: #6200EE;
+}
+a{
+	color: #8733ff;
+	
+}
+.body_attributes, .center{
+	max-width: 1500px;
+	margin: auto;
+	padding: 20px;
+
+}
+
+.heading{
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+html{
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+body{
+	background: #fdfefd;
+}
+
+
+.footer{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 50px;
+	padding-right: 50px;
+	color: #555;
+	font-size: 12px;
+	line-height: 1.8;
+	background-color: #efefef;
+
+	max-width: 1500px;
+	margin: auto;
+	
+}
+
+nav{
+	max-width: 1500px;
+	margin: auto;
+
+}
+
+.summary_text{
+	margin-right: 25px;
+	margin-left: 15px;
+}
+	
