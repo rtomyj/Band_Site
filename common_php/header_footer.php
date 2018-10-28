@@ -21,45 +21,35 @@ function printHeader($title){
 		<link rel='stylesheet' href='styles/bootstrap.css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 		<link rel='stylesheet' type='text/css' href='styles/styles.css'>
 	</head>
-	<body class='body'>
-		<div class='w3-deep-orange' class='justify-content-center'>
+	<body class='body body_attributes'>
+		<div class='justify-content-center w3-flat-belize-hole'>
 				<nav class='navbar navbar-expand-sm navbar-dark' >
 					<a class="navbar-brand" href="index.php">GEM System</a>
 					<ul class='navbar-nav'>
 						<li class='nav-item active'>
 							<a HREF='index.php' class='nav-link'>Home</a>
 						</li>
-						<li> <div class='dropdown'>
-							<button type="button" class='btn btn-primary dropdown-toggle w3-deep-orange' data-toggle="dropdown">
-Create
-</button>
-<div class="dropdown-menu">
-    <a class="dropdown-item" href="create_agent.php">New Agent</a>
-    <a class="dropdown-item" href="create_artist.php">New Artist</a>
-</div></div>
-
+						<li class='nav-item active'>
+							<div class='dropdown'>
+								<button type='button' class='btn dropdown-toggle w3-flat-belize-hole' data-toggle='dropdown'>
+									Create
+  								</button>
+								<div class="dropdown-menu">
+										<a class="dropdown-item" href="create_artist.php">Artist</a>
+										<a class="dropdown-item" href="create_agent.php">Agent</a>
+										<a class="dropdown-item" href="#">Band</a>
+								</div>
+							</div>
 						</li>
 						<li class='nav-item active'>
 							<a HREF='reports.php' class='nav-link'>Reports</a>
 						</li>
 						<li class='nav-item active'>
 							<a HREF='search.php' class='nav-link'>Search</a>
-						</li>
-						<li>
-							<div class='dropdown'>
-								<button type="button" class="btn btn-primary dropdown-toggle w3-deep-orange" data-toggle="dropdown">
-    TEST
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Link 1</a>
-    <a class="dropdown-item" href="#">Link 2</a>
-    <a class="dropdown-item" href="#">Link 3</a>
-  </div>
-</div>
 						</li>
 					</ul>
 				</nav>

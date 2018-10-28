@@ -17,7 +17,6 @@ a{
 .body_attributes, .center{
 	max-width: 1500px;
 	margin: auto;
-	padding: 20px;
 
 }
 
@@ -46,10 +45,8 @@ body{
 	font-size: 12px;
 	line-height: 1.8;
 	background-color: #efefef;
-
-	max-width: 1500px;
 	margin: auto;
-	
+	max-width: 1500px;
 }
 
 nav{
@@ -58,14 +55,35 @@ nav{
 
 }
 
-.summary_text{
-	margin-right: 25px;
-	margin-left: 15px;
-}
-
 .float-right{
 	display: flex;
 	justify-content: flex-end;
+}
+
+
+.label{
+	font-size: 15px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: auto;
+	margin-bottom: auto;
+	
+}
+
+.center-text-vertical{
+	
+}
+
+@media (max-width: 560px){
+	.label{
+		font-size: 15px;
+		height: 100%;
+		width: 100%;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
 }
 
 	
