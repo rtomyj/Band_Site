@@ -33,8 +33,15 @@ function printHeader($title){
 						<li class='nav-item active'>
 							<a HREF='index.php' class='nav-link'>Home</a>
 						</li>
-						<li class='nav-item active'>
-							<a HREF='create.php' class='nav-link'>Create</a>
+						<li> <div class='dropdown'>
+							<button type="button" class='btn btn-primary dropdown-toggle w3-deep-orange' data-toggle="dropdown">
+Create
+</button>
+<div class="dropdown-menu">
+    <a class="dropdown-item" href="create_agent.php">New Agent</a>
+    <a class="dropdown-item" href="create_artist.php">New Artist</a>
+</div></div>
+
 						</li>
 						<li class='nav-item active'>
 							<a HREF='reports.php' class='nav-link'>Reports</a>
