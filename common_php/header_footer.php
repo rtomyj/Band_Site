@@ -42,6 +42,7 @@ function printHeader($title){
 										<a class="dropdown-item" href="create_artist.php">Artist</a>
 										<a class="dropdown-item" href="create_agent.php">Agent</a>
 										<a class="dropdown-item" href="#">Band</a>
+										<a class="dropdown-item" href="create_event.php">Event</a>
 								</div>
 							</div>
 						</li>
