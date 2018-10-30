@@ -15,7 +15,7 @@ function createAgent(){
 	?>
 	<div style='margin-left: 20px; margin-right: 20px; margin-top: 20px'>
 		<div>
-			<h4 style='display: inline; font-size: 45px'>New Agent</h4>
+			<h4 style='display: inline; font-size: 45px'>Create New Agent</h4>
 			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Agent ID</h6>
 		</div>
 		<br><br>
@@ -41,7 +41,7 @@ function createAgent(){
 								<p class='label'>Middle Initial:</p>
 							</div>
 							<div class='col-sm-3'>
-								<input type='text' name='middleinitial' maxLength='2' class='label'>
+								<input type='text' name='middleinitial' maxLength='1' class='label'>
 							</div>
 						</div>
 	
@@ -70,7 +70,7 @@ function createAgent(){
 								<p class='label'>Street:</p>
 							</div>
 							<div class='col-sm-6'>
-								<input input='text' name='street' class='label'>
+								<input type='text' name='street' class='label'>
 							</div>
 						</div>
 					</div>
@@ -82,7 +82,7 @@ function createAgent(){
 								<p class='label'>City:</p>
 							</div>
 							<div class='col-sm-6'>
-								<input input='text' name='city' class='label'>
+								<input type='text' name='city' class='label'>
 							</div>
 						</div>
 
