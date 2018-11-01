@@ -79,7 +79,7 @@ function createAgent(){
 			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Agent ID</h6>
 		</div>
 		<br><br>
-		<form class='form' name='agentForm' onSubmit='return validateAgent()' method='get'>
+		<form class='form' name='agentForm' onSubmit='return validateAgent()' method='get' action='sql_request.php?from=agent'>
 
 
 			<div class='card'>
@@ -98,7 +98,7 @@ function createAgent(){
 
 						<div class='row col-lg-4'>
 							<div class='col-sm-6'>
-								<p class='label' id='middleInitialLabel'>Middle Initial:</p>
+									<p class='label' id='middleInitialLabel'>Middle Initial:</p>
 							</div>
 							<div class='col-sm-3'>
 								<input type='text' name='middleInitial' maxLength='1' class='label'>
@@ -232,6 +232,8 @@ function createAgent(){
 					<input type='submit' class='btn btn-success' value='Create Agent'>
 				</div>
 			</div>
+
+  		<input type="hidden" name="from" value="agent" />
 		</form>
 	
 	
