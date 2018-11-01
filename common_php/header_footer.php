@@ -47,7 +47,14 @@ function printHeader($title){
 							</div>
 						</li>
 						<li class='nav-item active'>
-							<a HREF='reports.php' class='nav-link'>Reports</a>
+							<div class='dropdown'>
+								<button type='button' class='btn dropdown-toggle w3-flat-belize-hole' data-toggle='dropdown'>
+									Reports
+  								</button>
+								<div class="dropdown-menu">
+										<a class="dropdown-item" href="generate_event_status.php">Generate Event Status</a>
+								</div>
+							</div>
 						</li>
 						<li class='nav-item active'>
 							<a HREF='search.php' class='nav-link'>Search</a>

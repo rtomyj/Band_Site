@@ -4,15 +4,15 @@ DROP TABLE agent;
 CREATE TABLE agent(
 	agent_id INT AUTO_INCREMENT,
 	first_name VARCHAR(25) NOT NULL,
-	middle_initial VARCHAR(2) NOT NULL,
+	middle_initial VARCHAR(1),
 	last_name VARCHAR(25) NOT NULL,
 	street VARCHAR(50) NOT NULL,
 	city VARCHAR(25) NOT NULL,
 	state VARCHAR(2) NOT NULL,
-	zip VARCHAR(10) NOT NULL,
-	email VARCHAR(25) NOT NULL,
-	office_phone INT NOT NULL,
-	cell_phone INT NOT NULL,
+	zip VARCHAR(5) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	office_phone VARCHAR(10) NOT NULL,
+	cell_phone VARCHAR(10) NOT NULL,
 	agent_type VARCHAR(15) NOT NULL,
 	PRIMARY KEY(agent_id)
 );
