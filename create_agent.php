@@ -1,7 +1,22 @@
 <?php
 require_once('common_php/header_footer.php');
+require_once('../includes/conn.php');
 
 printHeader("Create Agent");
+
+if (!empty($_POST)){
+	?>
+		<script>
+		</script>
+	<?php
+	$sql = "INSERT INTO agent (first_name, middle_initial, last_name, street, city, state, zip, email, office_phone, cell_phone, agent_type) VALUES ('{$_POST['firstName']}', '{$_POST['middleInitial']}', '{$_POST['lastName']}', '{$_POST['street']}', '{$_POST['city']}', '{$_POST['state']}', {$_POST['zip']}, '{$_POST['email']}', '{$_POST['officeNumber']}', '{$_POST['cellNumber']}', '{$_POST['agentType']}')";
+	echo $sql;
+	$conn->exec($sql);
+
+
+
+}
+
 createAgent();
 
 ?>
@@ -79,7 +94,7 @@ function createAgent(){
 			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Agent ID</h6>
 		</div>
 		<br><br>
-		<form class='form' name='agentForm' onSubmit='return validateAgent()' method='get' action='sql_request.php?from=agent'>
+		<form class='form' name='agentForm' id='agentForm' onSubmit='return validateAgent()' method='post' action='create_agent.php'>
 
 
 			<div class='card'>
@@ -210,7 +225,7 @@ function createAgent(){
 								<p class='label'>Agent Type:</p>
 							</div>
 							<div class='col-sm-6'>
-								<select name='agenttype' class='label'>
+								<select name='agentType' id='agentType' form='agentForm' class='label'>
 									<option value='for_artist'>For Artist</option>
 									<option value='for_band'>For Band</option>
 									<option value='other'>Other</option>
@@ -233,7 +248,7 @@ function createAgent(){
 				</div>
 			</div>
 
-  		<input type="hidden" name="from" value="agent" />
+  		<input type="hidden" name="submitted" value="true" />
 		</form>
 	
 	
