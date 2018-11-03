@@ -6,7 +6,7 @@ require_once('../includes/conn.php');
 
 printHeader("GEM - Create Artist");
 
-$sql = 'SELECT count(*) as total from agent';
+$sql = "SELECT count(*) as total from agent where agent_type = 'For Artist'";
 $result = $conn->query($sql) -> fetch();
 if ($result['total'] == '0')
 	$NO_AGENTS = true;
@@ -223,10 +223,10 @@ function createArtist($conn){
 						<div class='col-md-2'>
 								<p class='label' id='agentNameLabel'>Agent Name:</p>
 						</div>
-						<div class='col-md-2'>
+						<div class='col-md-6'>
 							<select name='agent' class='custom-select form-control-sm'>
 								<?php
-									$sql = 'SELECT agent_id, first_name, middle_initial, last_name from agent';
+									$sql = "SELECT agent_id, first_name, middle_initial, last_name from agent where agent_type = 'For Artist'";
 									$query = $conn->query($sql);
 									while ($result = $query->fetch()) {
 										echo "<option value='{$result['agent_id']}'>{$result['first_name']} {$result['middle_initial']} {$result['last_name']}</option>";
