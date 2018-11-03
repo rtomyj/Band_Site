@@ -88,7 +88,7 @@ function createAgent(){
 	</script>
 
 
-	<div style='margin-left: 20px; margin-right: 20px; margin-top: 20px'>
+	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
 			<h4 style='display: inline; font-size: 45px'>Create New Agent</h4>
 			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Agent ID</h6>
@@ -100,7 +100,7 @@ function createAgent(){
 			<div class='card'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Agent Name</h4>
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
 
 						<div class='col-md-2'>
 							<p class='label' id='firstNameLabel'>First Name:</p>
@@ -134,11 +134,11 @@ function createAgent(){
 	
 	
 	
-			<div class='card' style='margin-top: 55px;'>
+			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Contact Information</h4>
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px;'>
 						<div class='col-md-2'>
 							<p class='label' id='streetLabel'>Street:</p>
 						</div>
@@ -149,7 +149,7 @@ function createAgent(){
 					
 
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px;'>
 						<div class='col-md-2'>
 							<p class='label' id='cityLabel'>City:</p>
 						</div>
@@ -161,7 +161,7 @@ function createAgent(){
 							<p class='label'>State:</p>
 						</div>
 						<div class='col-md-2'>
-							<select name='state' class='label'>
+							<select name='state' class='custom-select form-control-sm'>
 								<?php printStatesDropDown() ?>
 							</select>
 						</div>
@@ -178,7 +178,7 @@ function createAgent(){
 					</div>
 	
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px;'>
 
 						<div class='col-md-2'>
 							<p class='label' id='emailLabel'>Email:</p>
@@ -210,17 +210,17 @@ function createAgent(){
 			</div>
 	
 	
-			<div class='card' style='margin-top: 55px;'>
+			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Other</h4>
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
 
 						<div class='col-sm-2'>
 							<p class='label'>Agent Type:</p>
 						</div>
 						<div class='col-sm-2'>
-							<select name='agentType' id='agentType' form='agentForm' class='label'>
+							<select name='agentType' id='agentType' form='agentForm' class='custom-select form-control-sm'>
 								<option value='for_artist'>For Artist</option>
 								<option value='for_band'>For Band</option>
 								<option value='other'>Other</option>

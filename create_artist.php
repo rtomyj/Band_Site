@@ -96,7 +96,7 @@ function createArtist($conn){
 	</script>
 
  
-	<div style='margin-left: 20px; margin-right: 20px; margin-top: 20px'>
+	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
 			<h1 style='display: inline; font-size: 45px'>Create New Artist</h4>
 			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Artist ID</h6>
@@ -108,7 +108,7 @@ function createArtist($conn){
 			<div class='card'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Artist Name</h4>
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
 
 						<div class='col-md-2'>
 							<p class='label' id='firstNameLabel'>First Name:</p>
@@ -137,11 +137,11 @@ function createArtist($conn){
 
 
 
-			<div class='card' style='margin-top: 55px;'>
+			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Contact Information</h4>
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px;'>
 						<div class='col-md-2'>
 							<p class='label' id='streetLabel'>Street:</p>
 						</div>
@@ -151,7 +151,7 @@ function createArtist($conn){
 					</div>
 
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px;'>
 
 						<div class='col-md-2'>
 							<p class='label' id='cityLabel'>City:</p>
@@ -165,7 +165,7 @@ function createArtist($conn){
 							<p class='label'>State:</p>
 						</div>
 						<div class='col-md-2'>
-							<select name='state' class='label'>
+							<select name='state' class='custom-select form-control-sm'>
 								<?php printStatesDropDown() ?>
 							</select>
 						</div>
@@ -182,7 +182,7 @@ function createArtist($conn){
 					</div>
 	
 
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px;'>
 
 						<div class='col-md-2'>
 							<p class='label' id='emailLabel'>Email:</p>
@@ -206,10 +206,10 @@ function createArtist($conn){
 
 
 
-			<div class='card' style='margin-top: 55px;'>
+			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Performance Information</h4>
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
 
 
 						<div class='col-md-2'>
@@ -224,7 +224,7 @@ function createArtist($conn){
 								<p class='label' id='agentNameLabel'>Agent Name:</p>
 						</div>
 						<div class='col-md-2'>
-							<select name='agent' class='label'>
+							<select name='agent' class='custom-select form-control-sm'>
 								<?php
 									$sql = 'SELECT agent_id, first_name, middle_initial, last_name from agent';
 									$query = $conn->query($sql);
@@ -242,16 +242,16 @@ function createArtist($conn){
 			</div>
 
 
-			<div class='card' style='margin-top: 55px;'>
+			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Performance Information</h4>
-					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
 
 						<div class='col-md-2'>
 								<p class='label' id='genderLabel'>Gender:</p>
 						</div>
 						<div class='col-md-2'>
-							<select name='gender' class='label'>
+							<select name='gender' class='custom-select form-control-sm'>
 								<option value='No Agent'>Male</option>
 								<option value='No Agent'>Female</option>
 								<option value='No Agent'>Non-Binary</option>
@@ -263,7 +263,7 @@ function createArtist($conn){
 			</div>
 
 
-			<div class='row container-fluid' style='margin-top: 55px;'>
+			<div class='row container-fluid' style='margin-top: 30px;'>
 				<div class='col-md-2'>
 					<input class='btn btn-outline-danger' id="btntest" type="button" value="Cancel" onclick="window.location.href='index.php'">
 				</div>
