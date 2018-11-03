@@ -6,16 +6,10 @@ require_once('../includes/conn.php');
 printHeader("GEM - Create Agent");
 
 
-if (!empty($_POST) && $_POST['firstName'] != 'DONT_SUBMIT'){
-	?>
-		<script>
-		</script>
-	<?php
+if (!empty($_POST)){
 	$sql = "INSERT INTO agent (first_name, middle_initial, last_name, street, city, state, zip, email, office_phone, cell_phone, agent_type) VALUES ('{$_POST['firstName']}', '{$_POST['middleInitial']}', '{$_POST['lastName']}', '{$_POST['street']}', '{$_POST['city']}', '{$_POST['state']}', {$_POST['zip']}, '{$_POST['email']}', '{$_POST['officeNumber']}', '{$_POST['cellNumber']}', '{$_POST['agentType']}')";
 	echo $sql;
 	$conn->exec($sql);
-
-	$_POST['firstName'] = 'DONT_SUBMIT';
 	
 	header ('Location: ' . $_SERVER['REQUEST_URI']);
 	exit();

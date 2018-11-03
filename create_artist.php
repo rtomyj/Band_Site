@@ -5,7 +5,6 @@ require_once('../includes/conn.php');
 
 
 printHeader("GEM - Create Artist");
-$toSubmit = createArtist($conn);
 
 $sql = 'SELECT count(*) as total from agent';
 $result = $conn->query($sql) -> fetch();
@@ -15,39 +14,18 @@ else
 	$NO_AGENTS = false;
 
 
-if($_SERVER['REQUEST_METHOD']=='POST' && $toSubmit == true)
-{
-	//artist name
-	$firstname = trim($_POST['firstName']);
-	$middleinitial = trim($_POST['middleInitial']);
-	$lastname = trim($_POST['lastName']);
+if (!empty($_POST)){
+	$sql = "INSERT INTO artist (first_name, middle_initial, last_name, street, city, state, zip, email, cell_phone, concert_rate, agent_id, gender) VALUES ('{$_POST['firstName']}', '{$_POST['middleInitial']}', '{$_POST['lastName']}', '{$_POST['street']}', '{$_POST['city']}', '{$_POST['state']}', {$_POST['zip']}, '{$_POST['email']}', '{$_POST['cellNumber']}', '{$_POST['concertRate']}', '{$_POST['agent']}', '{$_POST['gender']}' )";
+	echo $sql;
+	$conn->exec($sql);
+	
+	header ('Location: ' . $_SERVER['REQUEST_URI']);
+	exit();
 
-	//artist address
-	$street = trim($_POST['street']);
-	$city = trim($_POST['city']);
-	$state = trim($_POST['state']);
-	$zipcode = trim($_POST['zipCode']);
-
-	//contact info
-	$email = trim($_POST['email']);
-	$cellnumber = trim($_POST['cellNumber']);
-
-	//performance info
-	$concertrate = trim($_POST['concertRate']);
-	$agent = trim($_POST['agentName']);
-
-	//other
-	$gender = trim($_POST['gender']);
-
-    $sql = "insert into artist (first_name, middle_initial, last_name, street,
-	                        city, state, zip_code, email, cell_phone,
-				concert_rate, agent_id, gender)
-				values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(array($firstname, $middleinitial, $lastname, $street,
-			$city, $state, $zipcode, $email, $cellnumber,
-			$concertrate, $agent, $gender));
 }
+
+
+createArtist($conn);
 ?>
 
 <?php
@@ -118,7 +96,7 @@ function createArtist($conn){
 	</script>
 
  
-	<div style='margin-left: 25px; margin-right: 25px; margin-top: 8px'>
+	<div style='margin-left: 20px; margin-right: 20px; margin-top: 20px'>
 		<div>
 			<h1 style='display: inline; font-size: 45px'>Create New Artist</h4>
 			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Artist ID</h6>
@@ -246,12 +224,12 @@ function createArtist($conn){
 								<p class='label' id='agentNameLabel'>Agent Name:</p>
 						</div>
 						<div class='col-md-2'>
-							<select name='agentName' class='label'>
+							<select name='agent' class='label'>
 								<?php
-									$sql = 'SELECT first_name, last_name from agent';
+									$sql = 'SELECT agent_id, first_name, middle_initial, last_name from agent';
 									$query = $conn->query($sql);
 									while ($result = $query->fetch()) {
-										echo "<option value='{$result['first_name']} {$result['last_name']}'>{$result['first_name']} {$result['last_name']}</option>";
+										echo "<option value='{$result['agent_id']}'>{$result['first_name']} {$result['middle_initial']} {$result['last_name']}</option>";
 									}
 								?>
 								
