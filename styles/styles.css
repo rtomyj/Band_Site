@@ -66,7 +66,6 @@ nav{
 	height: 100%;
 	width: 100%;
 	display: flex;
-	justify-content: flex-end;
 	margin-top: auto;
 	margin-bottom: auto;
 	
@@ -84,6 +83,10 @@ nav{
 		margin-top: auto;
 		margin-bottom: auto;
 	}
+}
+
+div{
+	margin-top: 3px;
 }
 
 	
