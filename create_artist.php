@@ -4,8 +4,16 @@ require_once('common_php/states.php');
 require_once('../includes/conn.php');
 
 
-printHeader("Home");
+printHeader("GEM - Create Artist");
 $toSubmit = createArtist($conn);
+
+$sql = 'SELECT count(*) as total from agent';
+$result = $conn->query($sql) -> fetch();
+if ($result['total'] == '0')
+	$NO_AGENTS = true;
+else
+	$NO_AGENTS = false;
+
 
 if($_SERVER['REQUEST_METHOD']=='POST' && $toSubmit == true)
 {
@@ -124,31 +132,25 @@ function createArtist($conn){
 					<h4 class='card-title'>Artist Name</h4>
 					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
 
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-								<p class='label' id='firstNameLabel'>First Name:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type='text' name='firstName' autofocus class='label' type='text' maxLength='25'>
-							</div>
+						<div class='col-md-2'>
+							<p class='label' id='firstNameLabel'>First Name:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type='text' name='firstName' autofocus class='label' type='text' maxLength='25'>
 						</div>
 
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-									<p class='label' id='middleInitialLabel'>Middle Initial:</p>
-							</div>
-							<div class='col-sm-3'>
-								<input type='text' name='middleInitial' maxLength='1' class='label'>
-							</div>
+						<div class='col-md-2'>
+								<p class='label' id='middleInitialLabel'>Middle Initial:</p>
 						</div>
-	
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-								<p class='label' id='lastNameLabel'>Last Name:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type='text' name='lastName' class='label' maxLength='25'>
-							</div>
+						<div class='col-md-1'>
+							<input type='text' name='middleInitial' maxLength='1' class='label'>
+						</div>
+
+						<div class='col-md-2 offset-md-1'>
+							<p class='label' id='lastNameLabel'>Last Name:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type='text' name='lastName' class='label' maxLength='25'>
 						</div>
 
 					</div>
@@ -162,67 +164,64 @@ function createArtist($conn){
 					<h4 class='card-title'>Contact Information</h4>
 
 					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-								<p class='label' id='streetLabel'>Street:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type='text' name='street' class='label' maxLength='50'>
-							</div>
+						<div class='col-md-2'>
+							<p class='label' id='streetLabel'>Street:</p>
+						</div>
+						<div class='col-md-6'>
+							<input type='text' name='street' class='label' maxLength='50'>
 						</div>
 					</div>
 
 
 					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
-						<div class='col-lg-4 row'>
-							<div class='col-sm-6'>
-								<p class='label' id='cityLabel'>City:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type='text' name='city' class='label' maxLength='25'>
-							</div>
+
+						<div class='col-md-2'>
+							<p class='label' id='cityLabel'>City:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type='text' name='city' class='label' maxLength='25'>
 						</div>
 
-						<div class='col-lg-4 row'>
-							<div class='col-sm-6'>
-								<p class='label'>State:</p>
-							</div>
-							<div class='col-sm-3'>
-								<select name='state' class='label'>
-									<?php printStateDropDown() ?>
-								</select>
-							</div>
+
+						<div class='col-md-2'>
+							<p class='label'>State:</p>
 						</div>
-	
-						<div class='col-lg-4 row'>
-							<div class='col-sm-6'>
-								<p class='label' id='zipLabel'>Zip Code:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type='text' name='zip' maxLength='5' minLength='5' class='label'>
-							</div>
+						<div class='col-md-2'>
+							<select name='state' class='label'>
+								<?php printStatesDropDown() ?>
+							</select>
 						</div>
+
+
+
+						<div class='col-md-2'>
+							<p class='label' id='zipLabel'>Zip Code:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type='text' name='zip' maxLength='5' minLength='5' class='label'>
+						</div>
+
 					</div>
 	
 
 					<div class='row' style='margin-top: 20px; margin-bottom: 20px;'>
-						<div class='col-lg-4 row'>
-							<div class='col-sm-6'>
-								<p class='label' id='emailLabel'>Email:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type=email name='email' class='label'>
-							</div>
+
+						<div class='col-md-2'>
+							<p class='label' id='emailLabel'>Email:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type=email name='email' class='label'>
 						</div>
 
-						<div class='col-lg-4 row'>
-							<div class='col-sm-6'>
-								<p class='label' id='cellNumberLabel'>Cell Number:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input name='cellNumber' type='tel' class='label' maxLength='10'>
-							</div>
+
+
+						<div class='col-md-2'>
+							<p class='label' id='cellNumberLabel'>Cell Number:</p>
 						</div>
+						<div class='col-md-2'>
+							<input name='cellNumber' type='tel' class='label' maxLength='10'>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -234,24 +233,29 @@ function createArtist($conn){
 					<h4 class='card-title'>Performance Information</h4>
 					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
 
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-								<p class='label' id='concertRateLabel'>Concert Rate:</p>
-							</div>
-							<div class='col-sm-6'>
-								<input type='text' name='concertRate' autofocus class='label' type='number' maxLength='10'>
-							</div>
+
+						<div class='col-md-2'>
+							<p class='label' id='concertRateLabel'>Concert Rate:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type='text' name='concertRate' autofocus class='label' type='number' maxLength='10'>
 						</div>
 
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-									<p class='label' id='agentNameLabel'>Agent Name:</p>
-							</div>
-							<div class='col-sm-6'>
-								<select name='agentName' class='label'>
-									<option value='No Agent'>No Agent</option>
-								</select>
-							</div>
+
+						<div class='col-md-2'>
+								<p class='label' id='agentNameLabel'>Agent Name:</p>
+						</div>
+						<div class='col-md-2'>
+							<select name='agentName' class='label'>
+								<?php
+									$sql = 'SELECT first_name, last_name from agent';
+									$query = $conn->query($sql);
+									while ($result = $query->fetch()) {
+										echo "<option value='{$result['first_name']} {$result['last_name']}'>{$result['first_name']} {$result['last_name']}</option>";
+									}
+								?>
+								
+							</select>
 						</div>
 	
 
@@ -265,19 +269,16 @@ function createArtist($conn){
 					<h4 class='card-title'>Performance Information</h4>
 					<div class='row' style='margin-top: 20px; margin-bottom: 20px'>
 
-						<div class='row col-lg-4'>
-							<div class='col-sm-6'>
-									<p class='label' id='genderLabel'>Gender:</p>
-							</div>
-							<div class='col-sm-6'>
-								<select name='gender' class='label'>
-									<option value='No Agent'>Male</option>
-									<option value='No Agent'>Female</option>
-									<option value='No Agent'>Non-Binary</option>
-								</select>
-							</div>
+						<div class='col-md-2'>
+								<p class='label' id='genderLabel'>Gender:</p>
 						</div>
-	
+						<div class='col-md-2'>
+							<select name='gender' class='label'>
+								<option value='No Agent'>Male</option>
+								<option value='No Agent'>Female</option>
+								<option value='No Agent'>Non-Binary</option>
+							</select>
+						</div>
 
 					</div>
 				</div>
@@ -285,13 +286,11 @@ function createArtist($conn){
 
 
 			<div class='row container-fluid' style='margin-top: 55px;'>
-				<div class='col-sm-1'>
+				<div class='col-md-2'>
 					<input class='btn btn-outline-danger' id="btntest" type="button" value="Cancel" onclick="window.location.href='index.php'">
 				</div>
-				<div class=col-sm-10>
-				</div>
-				<div class='col-sm-1'>
-					<input type='submit' class='btn btn-success' value='Create Agent'>
+				<div class='col-md-2 offset-md-8'>
+					<input type='submit' class='btn btn-success' value='Create Artist'>
 				</div>
 			</div>
 

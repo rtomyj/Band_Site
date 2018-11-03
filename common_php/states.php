@@ -1,6 +1,6 @@
 <?php
 
-function printStateDropDown(){
+function printStatesDropDown(){
 ?>
 
 	<option value='AL'>AL</option>
