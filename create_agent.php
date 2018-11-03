@@ -106,7 +106,7 @@ function createAgent(){
 							<p class='label' id='firstNameLabel'>First Name:</p>
 						</div>
 						<div class='col-md-2'>
-							<input type='text' name='firstName' autofocus class='label' type='text' maxLength='25'>
+							<input type='text' name='firstName' autofocus class='label' type='text' maxLength='25' required>
 						</div>
 
 
@@ -124,7 +124,7 @@ function createAgent(){
 							<p class='label' id='lastNameLabel'>Last Name:</p>
 						</div>
 						<div class='col-md-2'>
-							<input type='text' name='lastName' class='label' maxLength='25'>
+							<input type='text' name='lastName' class='label' maxLength='25' required>
 						</div>
 
 
@@ -143,7 +143,7 @@ function createAgent(){
 							<p class='label' id='streetLabel'>Street:</p>
 						</div>
 						<div class='col-md-6'>
-							<input type='text' name='street' class='label' maxLength='50'>
+							<input type='text' name='street' class='label' maxLength='50' required>
 						</div>
 					</div>
 					
@@ -154,7 +154,7 @@ function createAgent(){
 							<p class='label' id='cityLabel'>City:</p>
 						</div>
 						<div class='col-md-2'>
-							<input type='text' name='city' class='label' maxLength='25'>
+							<input type='text' name='city' class='label' maxLength='25' required>
 						</div>
 
 						<div class='col-md-2'>
@@ -172,7 +172,7 @@ function createAgent(){
 							<p class='label' id='zipLabel'>Zip Code:</p>
 						</div>
 						<div class='col-md-2'>
-							<input type='text' name='zip' maxLength='5' minLength='5' class='label'>
+							<input type='text' name='zip' maxLength='5' minLength='5' class='label' required>
 						</div>
 
 					</div>
@@ -184,7 +184,7 @@ function createAgent(){
 							<p class='label' id='emailLabel'>Email:</p>
 						</div>
 						<div class='col-md-2'>
-							<input type=email name='email' class='label'>
+							<input type=email name='email' class='label' required>
 						</div>
 
 
@@ -193,7 +193,7 @@ function createAgent(){
 							<p class='label' id='officeNumberLabel'>Office Number:</p>
 						</div>
 						<div class='col-md-2'>
-							<input name='officeNumber' type='tel' class='label' maxLength='10'>
+							<input name='officeNumber' type='tel' class='label' maxLength='10' required>
 						</div>
 
 
@@ -202,7 +202,7 @@ function createAgent(){
 							<p class='label' id='cellNumberLabel'>Cell Number:</p>
 						</div>
 						<div class='col-md-2'>
-							<input name='cellNumber' type='tel' class='label' maxLength='10'>
+							<input name='cellNumber' type='tel' class='label' maxLength='10' required>
 						</div>
 
 					</div>
