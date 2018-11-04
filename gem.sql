@@ -136,6 +136,8 @@ CREATE TABLE event(
 	artist_id INT,
 	band_id INT,
 	performer_type CHAR NOT NULL,
+	event_name VARCHAR(50) NOT NULL,
+	tickets_sold INT NOT NULL,
 	date_created DATE NOT NULL,
 	event_date DATE NOT NULL,
 	start_time TIME NOT NULL,

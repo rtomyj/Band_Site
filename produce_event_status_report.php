@@ -20,26 +20,15 @@ function produceEventStatus($conn){
 		
 		<?php
 
+		// select * from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy where event_status = 'Created'
 
-		$sql = "SELECT * FROM event, artist WHERE";
+
+		$sql = "select * from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy";
 		$total = count($_POST['generate']);
 		$current = 1;
 
-		foreach($_POST['generate'] as $filter){
-			$sql = $sql . " event_status = '{$filter}'";
-
-			if ($current != $total)
-				$sql .= " OR";
-
-			$current = $current + 1;
-		}
-		$sql = $sql . " AND event.artist_id = artist.artist_id ORDER BY event_status";
-
-		$sql .= " UNION ALL ";
-		
-		// combining previous query with new query for bands
-		$sql .= "SELECT * FROM event, band WHERE";
-		$current = 1;
+		if ($total >= 1)
+			$sql .= " where ";
 
 		foreach($_POST['generate'] as $filter){
 			$sql = $sql . " event_status = '{$filter}'";
@@ -49,19 +38,21 @@ function produceEventStatus($conn){
 
 			$current = $current + 1;
 		}
-		$sql = $sql . " AND event.band_id = artist.band_id ORDER BY event_status";
+		$sql = $sql . " ORDER BY event_status, event_id";
 
-		echo $sql;
-		//$conn->exec($sql);
 
 		?>
 		<div class='table-responsive-md' >
 		<table id='search_table' class='table table-borderless table-bordered'>
 			<thead class='thead-light'><tr>
+				<th>ID</th>
 				<th>Status</th>
-				<th>Event Name</th>
-				<th>Event Date</th>
+				<th>Name</th>
+				<th>Date</th>
 				<th>Capacity</th>
+				<th>Tickets Sold</th>
+				<th>Ticket Price</th>
+				<th>Expected Revenue</th>
 			</tr></thead>
 			<tbody>
 
@@ -69,12 +60,18 @@ function produceEventStatus($conn){
 
 		$query = $conn -> query($sql);
 		while ($result = $query -> fetch()){
+			$revenue = intval($result['tickets_sold']) * intval($result['concert_rate']) * .3;
+			$revenue = number_format($revenue, 2, '.', '');
 			echo "
 				<tr>
+				<td>{$result['event_id']}</td>
 				<td>{$result['event_status']}</td>
-				<td>Event Name</td>
+				<td>{$result['event_name']}</td>
 				<td>{$result['event_date']}</td>
 				<td>{$result['capacity']}</td>
+				<td>{$result['tickets_sold']}</td>
+				<td>\${$result['concert_rate']}</td>
+				<td>\${$revenue}</td>
 				</tr>
 				";
 		}
@@ -84,8 +81,22 @@ function produceEventStatus($conn){
 
 		</tbody>
 		</table>
+		
 		</div>
+		
 		</div>
+			<div class='row container-fluid' style='margin-top: 30px; margin-bottom: 30px'>
+				<div class='col-md-2'>
+					<button class='btn btn-outline-danger' type="button" onclick="window.location.href='index.php'">
+						Cancel
+					</button>
+				</div>
+				<div class='col-md-2 offset-md-8'>
+					<button class='btn btn-success' type="button" onclick="window.location.href='index.php'">
+						Print
+					</button>
+				</div>
+			</div>
 		<?php
 }
 

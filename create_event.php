@@ -7,10 +7,10 @@ printHeader("GEM - Create Event");
 
 if (!empty($_POST)){
 	if ($_POST['performer'] == 'artist'){
-		$sql = "INSERT INTO event(artist_id, performer_type, date_created, event_date, start_time, event_location, capacity, event_manager, stage_vendor, equipment_vendor, lighting_vendor, sound_vendor, notes, event_status) VALUES({$_POST['artist']}, 'A', '{$_POST['dateCreated']}', '{$_POST['eventDate']}', '{$_POST['startTime']}', {$_POST['location']}, {$_POST['capacity']}, {$_POST['manager']}, {$_POST['stageVendor']}, {$_POST['equipmentVendor']}, {$_POST['lightingVendor']}, {$_POST['soundVendor']}, '{$_POST['notes']}', 'Created'  )";
+		$sql = "INSERT INTO event(artist_id, performer_type, event_name, tickets_sold, date_created, event_date, start_time, event_location, capacity, event_manager, stage_vendor, equipment_vendor, lighting_vendor, sound_vendor, notes, event_status) VALUES({$_POST['artist']}, 'A', '{$_POST['eventName']}', {$_POST['ticketsSold']}, '{$_POST['dateCreated']}', '{$_POST['eventDate']}', '{$_POST['startTime']}', {$_POST['location']}, {$_POST['capacity']}, {$_POST['manager']}, {$_POST['stageVendor']}, {$_POST['equipmentVendor']}, {$_POST['lightingVendor']}, {$_POST['soundVendor']}, '{$_POST['notes']}', 'Created'  )";
 	}
 	else{
-		$sql = "INSERT INTO event(band_id, performer_type, date_created, event_date, start_time, event_location, capacity, event_manager, stage_vendor, equipment_vendor, lighting_vendor, sound_vendor, notes, event_status) VALUES({$_POST['band']}, 'B', '{$_POST['dateCreated']}', '{$_POST['eventDate']}', '{$_POST['startTime']}', {$_POST['location']}, {$_POST['capacity']}, {$_POST['manager']}, {$_POST['stageVendor']}, {$_POST['equipmentVendor']}, {$_POST['lightingVendor']}, {$_POST['soundVendor']}, '{$_POST['notes']}', 'Created'  )";
+		$sql = "INSERT INTO event(band_id, performer_type, event_name, tickets_sold, date_created, event_date, start_time, event_location, capacity, event_manager, stage_vendor, equipment_vendor, lighting_vendor, sound_vendor, notes, event_status) VALUES({$_POST['band']}, 'B', '{$_POST['eventName']}', {$_POST['ticketsSold']}, '{$_POST['dateCreated']}', '{$_POST['eventDate']}', '{$_POST['startTime']}', {$_POST['location']}, {$_POST['capacity']}, {$_POST['manager']}, {$_POST['stageVendor']}, {$_POST['equipmentVendor']}, {$_POST['lightingVendor']}, {$_POST['soundVendor']}, '{$_POST['notes']}', 'Created'  )";
 	}
 	
 
@@ -117,6 +117,24 @@ function createAgent($conn){
 			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Event Details</h4>
+
+					<div class='row' style='margin-top: 16px; margin-bottom: 16px'>
+
+						<div class='col-md-2'>
+							<p class='label'>Event Name:</p>
+						</div>
+						<div class='col-md-6'>
+							<input type='text' name='eventName' class='label' required>
+						</div>
+
+						<div class='col-md-2'>
+							<p class='label'>Tickets Sold:</p>
+						</div>
+						<div class='col-md-2'>
+							<input type='text' name='ticketsSold' class='label' required>
+						</div>
+
+					</div>
 
 					<div class='row' style='margin-top: 16px; margin-bottom: 16px'>
 
