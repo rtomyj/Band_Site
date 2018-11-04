@@ -1,4 +1,5 @@
 DROP TABLE vendor;
+DROP TABLE location;
 DROP TABLE manager;
 DROP TABLE band;
 DROP TABLE artist;
@@ -45,6 +46,11 @@ CREATE TABLE artist(
 	PRIMARY KEY(artist_id),
 	FOREIGN KEY (agent_id) REFERENCES agent(agent_id)
 );
+INSERT INTO artist
+(first_name, middle_initial, last_name, street, city, state, zip, email, cell_phone, concert_rate, agent_id, gender)
+VALUES
+('Prince', '', '', '7801 Audubon Rd', 'Chanhassen,', 'MN', '55317', 'thelovesymbol@prince.com', '5555551234', 1000.00, 1, 'M'),
+('Janelle', '', 'Monae', '1717 Sunshine Rd', 'Kansas City,', 'KS', '55317', 'droid@monae.com', '5555559876', 350.00, 1, 'F');
 
 
 CREATE TABLE band(
@@ -58,13 +64,44 @@ CREATE TABLE band(
 	PRIMARY KEY(band_id),
 	FOREIGN KEY(agent_id) REFERENCES agent(agent_id)
 );
+INSERT INTO band
+(band_name, agent_id, leader, members, concert_rate, speacial_notes)
+VALUES
+('of Montreal', '2', 'Kevin Barnes', 'Clayton Rychlik, Jojo Glidewell, Davey Pierce, Nicolas Dobbratz', 30.00, 'Requires lots of booze'),
+('Bloc Party', '2', 'Kele Okereke', 'Russell Lissack, Justin Harris, Louise Bartle', 50.00, '');
+
 
 CREATE TABLE manager(
 	manager_id int AUTO_INCREMENT,
+	first_name VARCHAR(25) NOT NULL,
+	middle_initial VARCHAR(1) NOT NULL,
+	last_name VARCHAR(25) NOT NULL,
 	email VARCHAR(50) NOT NULL,
 	phone_number VARCHAR(10) NOT NULL,
 	PRIMARY KEY(manager_id)
 );
+INSERT INTO manager
+(first_name, middle_initial, last_name, email, phone_number)
+VALUES
+('Javi', '', 'Gomez', 'wrongaddress@icloud.com', '6307546535'),
+('Zach', '', 'Dick', 'noway@gmail.com', '6304716565');
+
+
+CREATE TABLE location(
+	location_id int AUTO_INCREMENT,
+	location_name VARCHAR(50) NOT NULL,
+	street VARCHAR(50) NOT NULL,
+	city VARCHAR(25) NOT NULL,
+	state VARCHAR(2) NOT NULL,
+	zip VARCHAR(5) NOT NULL,
+	PRIMARY KEY(location_id)
+);
+INSERT INTO location
+(location_name, street, city, state, zip)
+VALUES
+('Thalia Hall', '1807 S Allport St.', 'Chicago', 'IL', '60608'),
+('Aragon Ballroom', '1106 W Lawrence Ave.', 'Chicago', 'IL', '60640'),
+('Lincoln Hall', '2424 N Lincoln Ave.', 'Chicago', 'IL', '60614');
 
 
 CREATE TABLE vendor(
@@ -82,7 +119,7 @@ CREATE TABLE vendor(
 	speacial_notes VARCHAR(500) NOT NULL,
 	PRIMARY KEY(vendor_id)
 );
-
-
-
-INSERT INTO band VALUES('of Montreal', 0)
+INSERT INTO vendor
+()
+VALUES
+()
