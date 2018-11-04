@@ -55,7 +55,7 @@ function createAgent($conn){
 			<div class='card'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Performer</h4>
-					<div class='row' style='margin-top: 16px; margin-bottom: 16px'>
+					<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
 						
 						<div class='col-md-2 offset-md-2'>
@@ -309,7 +309,7 @@ function createAgent($conn){
 			<div class='card' style='margin-top: 30px;'>
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Special Notes</h4>
-					<div class='row' style='margin-top: 16px; margin-bottom: 16px'>
+					<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
 						<textarea name='notes' class='col-md-10 offset-md-2' rows='5'> </textarea>
 
