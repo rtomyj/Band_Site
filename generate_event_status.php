@@ -2,16 +2,38 @@
 require_once('common_php/header_footer.php');
 
 printHeader("Home");
+generateEvent();
+
+printFooter();
 
 
+
+function generateEvent(){
 ?>
+
+	<script>
+		function validateAgent(){
+			var proceed = false
+
+			if (document.getElementById('approvedBox').checked || document.getElementById('canceledBox').checked || document.getElementById('completedBox').checked || document.getElementById('soldOutBox').checked || document.getElementById('advertisedBox').checked || document.getElementById('createdBox').checked){
+				proceed = true
+			}
+
+			if (! proceed)
+				alert('At least one checkbox needs to be clicked')
+			
+			return proceed
+		}
+
+	</script>
+
 
 	<div style='margin-left: 20px; margin-right: 20px; margin-top: 20px'>
 		<div>
 			<h4 style='display: inline; font-size: 45px'>Generate Event Report</h4>
 		</div>
 		<br><br>
-		<form class='form'>
+		<form class='form' name='generateForm' action="produce_event_status_report.php" onSubmit='return validateAgent()' method="post">
 
 			<div class='card'>
 				<div class='card-body container-fluid'>
@@ -57,32 +79,32 @@ printHeader("Home");
 
 					<div class="form-check col-md-4">
 						<label class="form-check-label" for='approvedBox'>
-							<input type="checkbox" class="form-check-input pull-right" id='approvedBox' checked name='generate' value="Approved">Approved
+							<input type="checkbox" class="form-check-input pull-right" id='approvedBox' checked name='generate[]' value="Approved">Approved
 						</label>
 					</div>
 					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" checked name='generate' value=""Canceled>Canceled
+							<input type="checkbox" class="form-check-input" id='canceledBox' checked name='generate[]' value="Canceled">Canceled
 						</label>
 					</div>
 					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" checked name='generate' value="Completed">Completed
+							<input type="checkbox" class="form-check-input" id='completedBox' checked name='generate[]' value="Completed">Completed
 						</label>
 					</div>
 					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" checked name='generate' value="Sold OUt">Sold Out
+							<input type="checkbox" class="form-check-input" id='soldOutBox' checked name='generate[]' value="Sold Out">Sold Out
 						</label>
 					</div>
 					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name='generate' checked value="Advertised">Advertised
+							<input type="checkbox" class="form-check-input" name='generate[]' id='advertisedBox' checked value="Advertised">Advertised
 						</label>
 					</div>
 					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name='generate' checked value="Created">Created
+							<input type="checkbox" class="form-check-input" name='generate[]' id='createdBox' checked value="Created">Created
 						</label>
 					</div>
 					</div>
@@ -108,6 +130,5 @@ printHeader("Home");
 	</div>
 
 <?php
-
-printFooter();
+}
 ?>

@@ -56,9 +56,6 @@ function printHeader($title){
 								</div>
 							</div>
 						</li>
-						<li class='nav-item active'>
-							<a HREF='search.php' class='nav-link'>Search</a>
-						</li>
 					</ul>
 				</nav>
 		</div>
