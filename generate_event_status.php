@@ -24,7 +24,7 @@ printHeader("Home");
 								<p class='label'>Start Date:</p>
 							</div>
 							<div class='col-sm-6'>
-								<input name='startdate' type='date' class='label'>
+								<input name='startDate' type='date' class='label' value="<?php echo date('Y-m-d', round(microtime(true) - (604800 * 2) ));?>">
 							</div>
 						</div>
 
@@ -38,7 +38,7 @@ printHeader("Home");
 								<p class='label'>End Date:</p>
 							</div>
 							<div class='col-sm-6'>
-								<input name='enddate' type='date' class='label'>
+								<input name='endDate' type='date' class='label' value="<?php echo date('Y-m-d');?>">
 							</div>
 						</div>
 
@@ -53,37 +53,38 @@ printHeader("Home");
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Filter By Status</h4>
 
-					
+					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
 
-					<div class="form-check-inline col-sm-4">
+					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" value="">Approved
+							<input type="checkbox" class="form-check-input" checked name='generate' value="Approved">Approved
 						</label>
 					</div>
-					<div class="form-check-inline col-sm-4">
+					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" value="">Canceled
+							<input type="checkbox" class="form-check-input" checked name='generate' value=""Canceled>Canceled
 						</label>
 					</div>
-					<div class="form-check-inline col-sm-4">
+					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" value="">Completed
+							<input type="checkbox" class="form-check-input" checked name='generate' value="Completed">Completed
 						</label>
 					</div>
-					<div class="form-check-inline col-sm-4">
+					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" value="">Sold Out
+							<input type="checkbox" class="form-check-input" checked name='generate' value="Sold OUt">Sold Out
 						</label>
 					</div>
-					<div class="form-check-inline col-sm-4">
+					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" value="">Advertised
+							<input type="checkbox" class="form-check-input" name='generate' checked value="Advertised">Advertised
 						</label>
 					</div>
-					<div class="form-check-inline col-sm-4">
+					<div class="form-check col-md-4">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" value="">Created
+							<input type="checkbox" class="form-check-input" name='generate' checked value="Created">Created
 						</label>
+					</div>
 					</div>
 
 
@@ -92,18 +93,12 @@ printHeader("Home");
 
 
 
-			<div class='row container-fluid' style='margin-top: 55px;'>
-				<div class='col-sm-1'>
-					<button class='btn btn-outline-danger'>
-						Cancel
-					</button>
+			<div class='row container-fluid' style='margin-top: 25px;'>
+				<div class='col-md-2'>
+					<input class='btn btn-outline-danger' id="btntest" type="button" value="Cancel" onclick="window.location.href='index.php'">
 				</div>
-				<div class=col-sm-10>
-				</div>
-				<div class='col-sm-1'>
-					<button class='btn btn-success'>
-						Generate
-					</button>
+				<div class='col-md-2 offset-md-8'>
+					<input type='submit' class='btn btn-success' value='Generate Report'>
 				</div>
 			</div>
 		</form>
