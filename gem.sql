@@ -1,10 +1,10 @@
-DROP TABLE vendor;
+/*DROP TABLE vendor;
 DROP TABLE location;
 DROP TABLE manager;
 DROP TABLE band;
 DROP TABLE artist;
 DROP TABLE agent;
-
+*/
 CREATE TABLE agent(
 	agent_id INT AUTO_INCREMENT,
 	first_name VARCHAR(25) NOT NULL,

@@ -169,11 +169,13 @@ function createAgent($conn){
 								<p class='label'>Vendors:</p>
 							</div>
 							<div class='col-md-6'>
-								<select name='agenttype' class='custom-select form-control-sm'>
-									<option value='for_artist'>For Artist</option>
-									<option value='for_band'>For Band</option>
-									<option value='other'>Other</option>
-								</select>
+								<?php
+								$sql = 'select vendor_name, vendor_type from vendor';								
+								$query = $conn->query($sql);
+								while($result = $query->fetch()){
+									echo "<input type='checkbox' class='custom-checkbox' > {$result['vendor_name']} ({$result['vendor_type']}) <br>";
+								}
+								?>	
 							</div>
 
 					</div>
