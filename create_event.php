@@ -162,9 +162,10 @@ function createAgent($conn){
 
 
 					</div>
-	
+
 					<div class='row' style='margin-top: 16px; margin-bottom: 16px;'>
 
+<<<<<<< HEAD
 							<div class='col-md-2'>
 								<p class='label'>Vendors:</p>
 							</div>
@@ -177,34 +178,126 @@ function createAgent($conn){
 								}
 								?>	
 							</div>
+=======
+						<div class='col-md-2'>
+							<p class='label'>Manager:</p>
+						</div>
+						<div class='col-md-6'>
+							<select name='agenttype' class='custom-select form-control-sm'>
+								<?php
+								$sql = "SELECT manager_id, first_name, middle_initial, last_name FROM manager ORDER BY first_name";
+								$query = $conn -> query($sql);
+
+								while ($result = $query -> fetch()){
+									if ($result['middle_initial'] != '')
+										$name = "{$result['first_name']} {$result['middle_initial']}. {$result['last_name']}";
+									else
+										$name = "{$result['first_name']} {$result['last_name']}";
+
+									echo "<option value='{$result['manager_id']}'>{$name}</option>";
+
+								}
+								?>
+							</select>
+						</div>
+>>>>>>> 52035775edf74fc170dde3d9b6511b73cec5c291
 
 					</div>
+				</div>
+			</div>
 
+
+			<div class='card' style='margin-top: 30px;'>
+				<div class='card-body container-fluid'>
+					<h4 class='card-title'>Vendors</h4>
 					<div class='row' style='margin-top: 16px; margin-bottom: 16px;'>
 
-							<div class='col-md-2'>
-								<p class='label'>Manager:</p>
-							</div>
-							<div class='col-md-6'>
-								<select name='agenttype' class='custom-select form-control-sm'>
-									<?php
-									$sql = "SELECT manager_id, first_name, middle_initial, last_name FROM manager ORDER BY first_name";
+						<div class='col-md-2'>
+							<p class='label'>Stage Setup:</p>
+						</div>
+						<div class='col-md-6'>
+							<select name='agenttype' class='custom-select form-control-sm'>
+								<?php
+									$sql = "SELECT vendor_id, vendor_name FROM vendor where vendor_type = 'Stage Setup' ORDER BY vendor_name";
 									$query = $conn -> query($sql);
 
 									while ($result = $query -> fetch()){
-										if ($result['middle_initial'] != '')
-											$name = "{$result['first_name']} {$result['middle_initial']}. {$result['last_name']}";
-										else
-											$name = "{$result['first_name']} {$result['last_name']}";
+										$name = "{$result['vendor_name']}";
 
-										echo "<option value='{$result['manager_id']}'>{$name}</option>";
-
+										echo "<option value='{$result['vendor_id']}'>{$name}</option>";
 									}
-									?>
-								</select>
-							</div>
+								?>
+							</select>
+						</div>
 
-					</div>
+						</div>
+
+						<div class='row' style='margin-top: 16px; margin-bottom: 16px;'>
+
+						<div class='col-md-2'>
+							<p class='label'>Equipment:</p>
+						</div>
+						<div class='col-md-6'>
+							<select name='agenttype' class='custom-select form-control-sm'>
+								<?php
+									$sql = "SELECT vendor_id, vendor_name FROM vendor where vendor_type = 'Equipment' ORDER BY vendor_name";
+									$query = $conn -> query($sql);
+
+									while ($result = $query -> fetch()){
+										$name = "{$result['vendor_name']}";
+
+										echo "<option value='{$result['vendor_id']}'>{$name}</option>";
+									}
+								?>
+							</select>
+						</div>
+
+						</div>
+
+						<div class='row' style='margin-top: 16px; margin-bottom: 16px;'>
+
+						<div class='col-md-2'>
+							<p class='label'>Lighting:</p>
+						</div>
+						<div class='col-md-6'>
+							<select name='agenttype' class='custom-select form-control-sm'>
+								<?php
+									$sql = "SELECT vendor_id, vendor_name FROM vendor where vendor_type = 'Lighting' ORDER BY vendor_name";
+									$query = $conn -> query($sql);
+
+									while ($result = $query -> fetch()){
+										$name = "{$result['vendor_name']}";
+
+										echo "<option value='{$result['vendor_id']}'>{$name}</option>";
+									}
+								?>
+							</select>
+						</div>
+
+						</div>
+
+
+						<div class='row' style='margin-top: 16px; margin-bottom: 16px;'>
+
+						<div class='col-md-2'>
+							<p class='label'>Sound:</p>
+						</div>
+						<div class='col-md-6'>
+							<select name='agenttype' class='custom-select form-control-sm'>
+							<?php
+								$sql = "SELECT vendor_id, vendor_name FROM vendor where vendor_type = 'Sound' ORDER BY vendor_name";
+								$query = $conn -> query($sql);
+
+								while ($result = $query -> fetch()){
+									$name = "{$result['vendor_name']}";
+
+									echo "<option value='{$result['vendor_id']}'>{$name}</option>";
+								}
+								?>
+							</select>
+						</div>
+
+						</div>
 				</div>
 			</div>
 

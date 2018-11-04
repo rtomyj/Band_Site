@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 /*DROP TABLE vendor;
+=======
+DROP TABLE event;
+DROP TABLE vendor;
+>>>>>>> 52035775edf74fc170dde3d9b6511b73cec5c291
 DROP TABLE location;
 DROP TABLE manager;
 DROP TABLE band;
@@ -120,6 +125,41 @@ CREATE TABLE vendor(
 	PRIMARY KEY(vendor_id)
 );
 INSERT INTO vendor
-()
+(vendor_name, street, city, state, zip, vendor_type, email, representative_name, representative_phone_number, representative_email, speacial_notes)
 VALUES
+<<<<<<< HEAD
 ()
+=======
+('Stage Master', '167 S Main St', 'Chicago', 'IL', '60608', 'Stage Setup', 'stagemaster@gmail.com', 'Stacy Gwen', '7205734902', 'stacy@gmail.com', ''),
+('Stages! Stages!! Stages!!!', '1491 W Central Blvd', 'Chicago', 'IL', '60608', 'Stage Setup', 'stages@gmail.com', 'Stan Roger', '7205736734', 'stanrog11@gmail.com', 'Works only with stages'),
+('Concert Equipment Plus', '1451 Circle Ln', 'Chicago', 'IL', '60614', 'Equipment', 'concertequipmentplus@gmail.com', 'Dan Smith', '7208971001', 'dsmith12@gmail.com', ''),
+('2 Bright', '1756 W Ogden Ave', 'Chicago', 'IL', '60614', 'Lighting', '2bright@exchange.com', 'Dawn Parks', '7208971391', 'dawnp73@gmail.com', ''),
+('I Can\'t Hear You!', '1420 S Taylor St', 'Chicago', 'IL', '60640', 'Sound', 'icanthearyou@exchange.com', 'Bryan Lavery', '7208971332', 'sportsfan1234@gmail.com', ''),
+('Speaker Pros', '967 W Roosevelt Rd', 'Chicago', 'IL', '60640', 'Sound', 'speakerpros@exchange.com', 'Becky Craven', '7208975332', 'punkgurl@gmail.com', '');
+
+
+CREATE TABLE event(
+	event_id INT AUTO_INCREMENT,
+	artist INT,
+	band INT,
+	date_crated DATE NOT NULL,
+	event_date DATE NOT NULL,
+	start_time TIME NOT NULL,
+	event_location INT NOT NULL,
+	event_manager INT NOT NULL,
+	stage_vendor INT,
+	equipment_vendor INT,
+	lighting_vendor INT,
+	sound_vendor INT,
+	notes VARCHAR(500),
+	PRIMARY KEY(event_id),
+	FOREIGN KEY(artist) REFERENCES artist(artist_id),
+	FOREIGN KEY(band) REFERENCES band(band_id),
+	FOREIGN KEY(event_location) REFERENCES location(location_id),
+	FOREIGN KEY(event_manager) REFERENCES manager(manager_id),
+	FOREIGN KEY(equipment_vendor) REFERENCES vendor(vendor_id),
+	FOREIGN KEY(lighting_vendor) REFERENCES vendor(vendor_id),
+	FOREIGN KEY(sound_vendor) REFERENCES vendor(vendor_id)
+
+);
+>>>>>>> 52035775edf74fc170dde3d9b6511b73cec5c291
