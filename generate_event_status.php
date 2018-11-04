@@ -53,11 +53,11 @@ printHeader("Home");
 				<div class='card-body container-fluid'>
 					<h4 class='card-title'>Filter By Status</h4>
 
-					<div class='row' style='margin-top: 15px; margin-bottom: 15px'>
+					<div class='row mx-auto' style='margin-top: 15px; margin-bottom: 15px'>
 
 					<div class="form-check col-md-4">
-						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" checked name='generate' value="Approved">Approved
+						<label class="form-check-label" for='approvedBox'>
+							<input type="checkbox" class="form-check-input pull-right" id='approvedBox' checked name='generate' value="Approved">Approved
 						</label>
 					</div>
 					<div class="form-check col-md-4">
