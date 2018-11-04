@@ -14,15 +14,15 @@ printFooter();
 
 function createAgent($conn){
 ?>
-	<style>
-		function showBand() {
-			alert('hi')
+	<script>
+		function switchArtistBand() {
 			var band = document.getElementById('bandDiv')
 			var artist = document.getElementById('artistDiv')
 			band.style.display = (band.style.display == 'block') ? 'none' : 'block'
 			artist.style.display = (artist.style.display == 'none') ? 'block' : 'none'
 		}
-	</style>
+
+	</script>
 	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
 			<h4 style='display: inline; font-size: 45px'>Create New Event</h4>
@@ -39,13 +39,13 @@ function createAgent($conn){
 						
 						<div class='col-md-2 offset-md-2'>
 							<label class="form-check-label">
-								<input class="form-check-input" type="radio" name="performer" checked='true'>
+								<input class="form-check-input" type="radio" name="performer" onclick="switchArtistBand();" checked='true'>
 								Artist
 							</label>
 						</div>
 						<div class='col-md-2'>
-							<label class="form-check-label" onclick="showBand()">
-								<input class="form-check-input" type="radio" name="performer" value="">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" name="performer" value="" onclick="switchArtistBand();">
 								Band
 							</label>
 						</div>
