@@ -120,6 +120,11 @@ CREATE TABLE vendor(
 	PRIMARY KEY(vendor_id)
 );
 INSERT INTO vendor
-()
+(vendor_name, street, city, state, zip, vendor_type, email, representative_name, representative_phone_number, representative_email, speacial_notes)
 VALUES
-()
+('Stage Master', '167 S Main St', 'Chicago', 'IL', '60608', 'Stage Setup', 'stagemaster@gmail.com', 'Stacy Gwen', '7205734902', 'stacy@gmail.com', ''),
+('Stages! Stages!! Stages!!!', '1491 W Central Blvd', 'Chicago', 'IL', '60608', 'Stage Setup', 'stages@gmail.com', 'Stan Roger', '7205736734', 'stanrog11@gmail.com', 'Works only with stages'),
+('Concert Equipment Plus', '1451 Circle Ln', 'Chicago', 'IL', '60614', 'Equipment', 'concertequipmentplus@gmail.com', 'Dan Smith', '7208971001', 'dsmith12@gmail.com', ''),
+('2 Bright', '1756 W Ogden Ave', 'Chicago', 'IL', '60614', 'Lighting', '2bright@exchange.com', 'Dawn Parks', '7208971391', 'dawnp73@gmail.com', ''),
+('I Can\'t Hear You!', '1420 S Taylor St', 'Chicago', 'IL', '60640', 'Sound', 'icanthearyou@exchange.com', 'Bryan Lavery', '7208971332', 'sportsfan1234@gmail.com', ''),
+('Speaker Pros', '967 W Roosevelt Rd', 'Chicago', 'IL', '60640', 'Sound', 'speakerpros@exchange.com', 'Becky Craven', '7208975332', 'punkgurl@gmail.com', '');
