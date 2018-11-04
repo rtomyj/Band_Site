@@ -1,3 +1,4 @@
+DROP TABLE event;
 DROP TABLE vendor;
 DROP TABLE location;
 DROP TABLE manager;
@@ -128,3 +129,29 @@ VALUES
 ('2 Bright', '1756 W Ogden Ave', 'Chicago', 'IL', '60614', 'Lighting', '2bright@exchange.com', 'Dawn Parks', '7208971391', 'dawnp73@gmail.com', ''),
 ('I Can\'t Hear You!', '1420 S Taylor St', 'Chicago', 'IL', '60640', 'Sound', 'icanthearyou@exchange.com', 'Bryan Lavery', '7208971332', 'sportsfan1234@gmail.com', ''),
 ('Speaker Pros', '967 W Roosevelt Rd', 'Chicago', 'IL', '60640', 'Sound', 'speakerpros@exchange.com', 'Becky Craven', '7208975332', 'punkgurl@gmail.com', '');
+
+
+CREATE TABLE event(
+	event_id INT AUTO_INCREMENT,
+	artist INT,
+	band INT,
+	date_crated DATE NOT NULL,
+	event_date DATE NOT NULL,
+	start_time TIME NOT NULL,
+	event_location INT NOT NULL,
+	event_manager INT NOT NULL,
+	stage_vendor INT,
+	equipment_vendor INT,
+	lighting_vendor INT,
+	sound_vendor INT,
+	notes VARCHAR(500),
+	PRIMARY KEY(event_id),
+	FOREIGN KEY(artist) REFERENCES artist(artist_id),
+	FOREIGN KEY(band) REFERENCES band(band_id),
+	FOREIGN KEY(event_location) REFERENCES location(location_id),
+	FOREIGN KEY(event_manager) REFERENCES manager(manager_id),
+	FOREIGN KEY(equipment_vendor) REFERENCES vendor(vendor_id),
+	FOREIGN KEY(lighting_vendor) REFERENCES vendor(vendor_id),
+	FOREIGN KEY(sound_vendor) REFERENCES vendor(vendor_id)
+
+);
