@@ -1,8 +1,9 @@
 <?php
 require_once('common_php/header_footer.php');
+require_once('../includes/conn.php');
 
-printHeader("Home");
-createAgent();
+printHeader("GEM - Create Event");
+createAgent($conn);
 
 ?>
 
@@ -11,8 +12,17 @@ createAgent();
 printFooter();
 
 
-function createAgent(){
+function createAgent($conn){
 ?>
+	<style>
+		function showBand() {
+			alert('hi')
+			var band = document.getElementById('bandDiv')
+			var artist = document.getElementById('artistDiv')
+			band.style.display = (band.style.display == 'block') ? 'none' : 'block'
+			artist.style.display = (artist.style.display == 'none') ? 'block' : 'none'
+		}
+	</style>
 	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
 			<h4 style='display: inline; font-size: 45px'>Create New Event</h4>
@@ -34,7 +44,7 @@ function createAgent(){
 							</label>
 						</div>
 						<div class='col-md-2'>
-							<label class="form-check-label">
+							<label class="form-check-label" onclick="showBand()">
 								<input class="form-check-input" type="radio" name="performer" value="">
 								Band
 							</label>
@@ -47,9 +57,37 @@ function createAgent(){
 						<div class='col-md-2'>
 							<p class="label">Name:</p>
 						</div>
-						<div class='col-md-6'>
+						<div class='col-md-6' id='artistDiv'>
 							<select name='state' class='custom-select form-control-sm'>
-								<option value='IL'>Artist/Band Name</option>
+								<?php
+								$sql = 'SELECT artist_id, first_name, middle_initial, last_name from artist ORDER BY first_name';
+								$query = $conn -> query($sql);
+								echo $sql;
+								while ($result = $query -> fetch()){
+									if ($result['middle_initial'] != '')
+										$name = "{$result['first_name']} {$result['middle_initial']}. {$result['last_name']}";
+									else
+										$name = "{$result['first_name']} {$result['last_name']}";
+
+									echo "<option value='{$result['artist_id']}'>{$name}</option>";
+								}
+								?>
+							</select>
+						</div>
+
+						<div class='col-md-6' style='display:none;' id='bandDiv'>
+							<select name='state' class='custom-select form-control-sm'>
+								<?php
+								$sql = 'SELECT band_id, band_name from band ORDER BY band_name';
+								$query = $conn -> query($sql);
+								echo $sql;
+
+								while ($result = $query -> fetch()){
+									$name = "{$result['band_name']}";
+
+									echo "<option value='{$result['band_id']}'>{$name}</option>";
+								}
+								?>
 							</select>
 						</div>
 
@@ -101,7 +139,16 @@ function createAgent(){
 						</div>
 						<div class='col-md-6'>
 							<select name='location' class='custom-select form-control-sm'>
-								<option value='event'>The Event Center, 483 Block St. Aurora, IL</option>
+								<?php
+								$sql = "SELECT location_id, location_name, street, zip FROM location ORDER BY location_name";
+								$query = $conn -> query($sql);
+
+								while ($result = $query -> fetch()){
+									$name = "{$result['location_name']}: {$result['street']}, {$result['zip']}";
+									echo "<option value='{$result['location_id']}'>{$name}</option>";
+
+								}
+								?>
 							</select>
 						</div>
 
@@ -138,9 +185,20 @@ function createAgent(){
 							</div>
 							<div class='col-md-6'>
 								<select name='agenttype' class='custom-select form-control-sm'>
-									<option value='for_artist'>For Artist</option>
-									<option value='for_band'>For Band</option>
-									<option value='other'>Other</option>
+									<?php
+									$sql = "SELECT manager_id, first_name, middle_initial, last_name FROM manager ORDER BY first_name";
+									$query = $conn -> query($sql);
+
+									while ($result = $query -> fetch()){
+										if ($result['middle_initial'] != '')
+											$name = "{$result['first_name']} {$result['middle_initial']}. {$result['last_name']}";
+										else
+											$name = "{$result['first_name']} {$result['last_name']}";
+
+										echo "<option value='{$result['manager_id']}'>{$name}</option>";
+
+									}
+									?>
 								</select>
 							</div>
 
