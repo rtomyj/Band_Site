@@ -56,6 +56,9 @@ function printHeader($title){
 								</div>
 							</div>
 						</li>
+						<li class='nav-item active'>
+							<a HREF='approve.php' class='nav-link'>Events For Approval</a>
+						</li>
 					</ul>
 				</nav>
 		</div>

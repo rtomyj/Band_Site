@@ -78,14 +78,15 @@ CREATE TABLE manager(
 	middle_initial VARCHAR(1) NOT NULL,
 	last_name VARCHAR(25) NOT NULL,
 	email VARCHAR(50) NOT NULL,
+	password varchar(25) NOT NULL,
 	phone_number VARCHAR(10) NOT NULL,
 	PRIMARY KEY(manager_id)
 );
 INSERT INTO manager
-(first_name, middle_initial, last_name, email, phone_number)
+(first_name, middle_initial, last_name, password, email, phone_number)
 VALUES
-('Javi', '', 'Gomez', 'wrongaddress@icloud.com', '6307546535'),
-('Zach', '', 'Dick', 'noway@gmail.com', '6304716565');
+('Javi', '', 'Gomez', '1234', 'test123@icloud.com', '6307546535'),
+('Zach', '', 'Dick', '0000', 'itworks@gmail.com', '6304716565');
 
 
 CREATE TABLE location(
