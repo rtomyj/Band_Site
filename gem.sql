@@ -82,14 +82,15 @@ CREATE TABLE manager(
 	middle_initial VARCHAR(1) NOT NULL,
 	last_name VARCHAR(25) NOT NULL,
 	email VARCHAR(50) NOT NULL,
+	password varchar(25) NOT NULL,
 	phone_number VARCHAR(10) NOT NULL,
 	PRIMARY KEY(manager_id)
 );
 INSERT INTO manager
-(first_name, middle_initial, last_name, email, phone_number)
+(first_name, middle_initial, last_name, password, email, phone_number)
 VALUES
-('Javi', '', 'Gomez', 'wrongaddress@icloud.com', '6307546535'),
-('Zach', '', 'Dick', 'noway@gmail.com', '6304716565');
+('Javi', '', 'Gomez', '1234', 'test123@icloud.com', '6307546535'),
+('Zach', '', 'Dick', '0000', 'itworks@gmail.com', '6304716565');
 
 
 CREATE TABLE location(
@@ -140,21 +141,26 @@ VALUES
 
 CREATE TABLE event(
 	event_id INT AUTO_INCREMENT,
-	artist INT,
-	band INT,
-	date_crated DATE NOT NULL,
+	artist_id INT,
+	band_id INT,
+	performer_type CHAR NOT NULL,
+	event_name VARCHAR(50) NOT NULL,
+	tickets_sold INT NOT NULL,
+	date_created DATE NOT NULL,
 	event_date DATE NOT NULL,
 	start_time TIME NOT NULL,
 	event_location INT NOT NULL,
+	capacity INT NOT NULL,
 	event_manager INT NOT NULL,
 	stage_vendor INT,
 	equipment_vendor INT,
 	lighting_vendor INT,
 	sound_vendor INT,
+	event_status VARCHAR(25) NOT NULL,
 	notes VARCHAR(500),
 	PRIMARY KEY(event_id),
-	FOREIGN KEY(artist) REFERENCES artist(artist_id),
-	FOREIGN KEY(band) REFERENCES band(band_id),
+	FOREIGN KEY(artist_id) REFERENCES artist(artist_id),
+	FOREIGN KEY(band_id) REFERENCES band(band_id),
 	FOREIGN KEY(event_location) REFERENCES location(location_id),
 	FOREIGN KEY(event_manager) REFERENCES manager(manager_id),
 	FOREIGN KEY(equipment_vendor) REFERENCES vendor(vendor_id),

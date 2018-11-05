@@ -1,0 +1,105 @@
+<?php
+require_once('common_php/header_footer.php');
+require_once('../includes/conn.php');
+
+
+printHeader("Home");
+produceEventStatus($conn);
+
+printFooter();
+
+function produceEventStatus($conn){
+	if (!empty($_POST)){
+		?>
+		<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
+		<div>
+			<h4 style='display: inline; font-size: 45px'>Event Status Report</h4>
+		</div>
+		<br><br>
+		
+		
+		<?php
+
+		// select * from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy where event_status = 'Created'
+
+
+		$sql = "select * from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy";
+		$total = count($_POST['generate']);
+		$current = 1;
+
+		if ($total >= 1)
+			$sql .= " where ";
+
+		foreach($_POST['generate'] as $filter){
+			$sql = $sql . " event_status = '{$filter}'";
+
+			if ($current != $total)
+				$sql .= " OR";
+
+			$current = $current + 1;
+		}
+		$sql = $sql . " ORDER BY event_status, event_id";
+
+
+		?>
+		<div class='table-responsive-md' >
+		<table id='search_table' class='table table-borderless table-bordered'>
+			<thead class='thead-light'><tr>
+				<th>ID</th>
+				<th>Status</th>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Capacity</th>
+				<th>Tickets Sold</th>
+				<th>Ticket Price</th>
+				<th>Expected Revenue</th>
+			</tr></thead>
+			<tbody>
+
+		<?php
+
+		$query = $conn -> query($sql);
+		while ($result = $query -> fetch()){
+			$revenue = intval($result['tickets_sold']) * intval($result['concert_rate']) * .3;
+			$revenue = number_format($revenue, 2, '.', '');
+			echo "
+				<tr>
+				<td>{$result['event_id']}</td>
+				<td>{$result['event_status']}</td>
+				<td>{$result['event_name']}</td>
+				<td>{$result['event_date']}</td>
+				<td>{$result['capacity']}</td>
+				<td>{$result['tickets_sold']}</td>
+				<td>\${$result['concert_rate']}</td>
+				<td>\${$revenue}</td>
+				</tr>
+				";
+		}
+
+		
+		?>
+
+		</tbody>
+		</table>
+		
+		</div>
+		
+		</div>
+			<div class='row container-fluid' style='margin-top: 30px; margin-bottom: 30px'>
+				<div class='col-md-2'>
+					<button class='btn btn-outline-danger' type="button" onclick="window.location.href='index.php'">
+						Cancel
+					</button>
+				</div>
+				<div class='col-md-2 offset-md-8'>
+					<button class='btn btn-success' type="button" onclick="window.location.href='index.php'">
+						Print
+					</button>
+				</div>
+			</div>
+		<?php
+}
+
+
+}
+

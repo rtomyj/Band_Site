@@ -221,9 +221,9 @@ function createAgent(){
 						</div>
 						<div class='col-sm-2'>
 							<select name='agentType' id='agentType' form='agentForm' class='custom-select form-control-sm'>
-								<option value='for_artist'>For Artist</option>
-								<option value='for_band'>For Band</option>
-								<option value='other'>Other</option>
+								<option value='For Artist'>For Artist</option>
+								<option value='For Band'>For Band</option>
+								<option value='Other'>Other</option>
 							</select>
 						</div>
 
