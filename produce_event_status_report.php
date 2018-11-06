@@ -136,7 +136,7 @@ function showNoRows(){
 	?>
 		<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
-			<h4 style='display: inline; font-size: 45px'>Event Status Report</h4>
+			<h4 style='display: inline; font-size: 30px'>Event Status Report</h4>
 		</div>
 		<br><br>
 

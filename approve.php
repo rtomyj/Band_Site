@@ -37,8 +37,8 @@ function showNeedsApproval($conn, $username){
         
 	echo "<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px' class='container-fluid'>";
 	echo "<div>";
-	echo "<h4 style='display: inline; font-size: 45px'>Approve Events</h4>";
-	echo "<h6 style='display: inline; margin-left: 8px; font-size: 30px;'>Signed In As: {$_SESSION['manager']}</h6>";
+	echo "<h4 style='display: inline; font-size: 30px'>Approve Events</h4>";
+	echo "<h6 style='display: inline; margin-left: 8px; font-size: 18px;'>Signed In As: {$_SESSION['manager']}</h6>";
 	foreach($conn->query($sql) as $res){
 	?>
 
@@ -356,7 +356,7 @@ function login($showFailedLogin){
 
 	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
-			<h4 style='display: inline; font-size: 45px'>Approve Events</h4>
+			<h4 style='display: inline; font-size: 30px'>Approve Events</h4>
 			<div class='container-fluid'>
 			</div>
 		</div>

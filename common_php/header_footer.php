@@ -28,36 +28,28 @@ function printHeader($title){
 	<body class='body body_attributes'>
 		<div class='justify-content-center w3-flat-belize-hole'>
 				<nav class='navbar navbar-expand-sm navbar-dark' >
-					<a class="navbar-brand" href="index.php">GEM System</a>
+					<a class="navbar-brand" href="index.php"><img src="res/gem_logo.png" width="30" height="30" alt="" style='margin:right: 10px'>GEM System</a>
 					<ul class='navbar-nav'>
 						<li class='nav-item active'>
 							<a HREF='index.php' class='nav-link'>Home</a>
 						</li>
-						<li class='nav-item active'>
-							<div class='dropdown'>
-								<button type='button' class='btn dropdown-toggle w3-flat-belize-hole' data-toggle='dropdown'>
-									Create
-  								</button>
-								<div class="dropdown-menu">
-										<a class="dropdown-item" href="create_agent.php">Agent</a>
-										<a class="dropdown-item" href="create_artist.php">Artist</a>
-										<a class="dropdown-item" href="#">Band</a>
-										<a class="dropdown-item" href="create_event.php">Event</a>
-								</div>
+						<li class='nav-item active dropdown'>
+							<a class="nav-link dropdown-toggle" href="#" id="createDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
+							<div class="dropdown-menu" aria-labelledby="createDropdown">
+								<a class="dropdown-item" href="create_agent.php">Agent</a>
+								<a class="dropdown-item" href="create_artist.php">Artist</a>
+								<a class="dropdown-item" href="#">Band</a>
+								<a class="dropdown-item" href="create_event.php">Event</a>
 							</div>
 						</li>
-						<li class='nav-item active'>
-							<div class='dropdown'>
-								<button type='button' class='btn dropdown-toggle w3-flat-belize-hole' data-toggle='dropdown'>
-									Reports
-  								</button>
-								<div class="dropdown-menu">
-										<a class="dropdown-item" href="generate_event_status.php">Generate Event Status</a>
-								</div>
+						<li class='nav-item active dropdown'>
+							<a class="nav-link dropdown-toggle" href="#" id="generateDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Generate</a>
+							<div class="dropdown-menu" aria-labelledby="generateDropdown">
+									<a class="dropdown-item" href="generate_event_status.php">Generate Event Status</a>
 							</div>
 						</li>
-						<li class='nav-item active'>
-							<a HREF='approve.php' class='nav-link'>Events For Approval</a>
+						<li class='nav-item active mx-auto'>
+							<a HREF='approve.php' class='nav-link'>Approve Events</a>
 						</li>
 					</ul>
 				</nav>

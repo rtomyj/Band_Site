@@ -24,8 +24,11 @@ if (!empty($_POST)){
 
 }
 
+$result = $conn -> query("SHOW TABLE STATUS LIKE 'artist'") -> fetch();
+$artistID = $result['Auto_increment'];
 
-createArtist($conn);
+
+createArtist($conn, $artistID);
 ?>
 
 <?php
@@ -33,7 +36,7 @@ createArtist($conn);
 printFooter();
 
 
-function createArtist($conn){
+function createArtist($conn, $artistID){
 ?>
 	<script>
 	function validateArtist(){
@@ -98,8 +101,8 @@ function createArtist($conn){
  
 	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
-			<h1 style='display: inline; font-size: 45px'>Create New Artist</h4>
-			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Artist ID</h6>
+			<h1 style='display: inline; font-size: 30px'>Create Artist</h4>
+			<h6 style='display: inline; margin-left: 8px; font-size: 18px;'><?php echo "Aritst ID({$artistID})"; ?></h6>
 		</div>
 		<br><br>
 			<form class='form' name='artistForm' onSubmit='return validateArtist()' action="create_artist.php" method="post">

@@ -30,7 +30,7 @@ function generateEvent(){
 
 	<div style='margin-left: 20px; margin-right: 20px; margin-top: 20px'>
 		<div>
-			<h4 style='display: inline; font-size: 45px'>Generate Event Report</h4>
+			<h4 style='display: inline; font-size: 30px'>Generate Event Report</h4>
 		</div>
 		<br><br>
 		<form class='form' name='generateForm' action="produce_event_status_report.php" onSubmit='return validateAgent()' method="post">

@@ -16,7 +16,11 @@ if (!empty($_POST)){
 
 }
 
-createAgent();
+
+$result = $conn -> query("SHOW TABLE STATUS LIKE 'agent'") -> fetch();
+$agentID = $result['Auto_increment'];
+
+createAgent($agentID);
 
 ?>
 
@@ -25,7 +29,7 @@ createAgent();
 printFooter();
 
 
-function createAgent(){
+function createAgent($agentID){
 	?>
 	<script>
 
@@ -90,8 +94,8 @@ function createAgent(){
 
 	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
-			<h4 style='display: inline; font-size: 45px'>Create New Agent</h4>
-			<h6 style='display: inline; margin-left: 8px; font-size: 25px;'>Agent ID</h6>
+			<h4 style='display: inline; font-size: 30px'>Create Agent</h4>
+			<h6 style='display: inline; margin-left: 8px; font-size: 18px;'><?php echo "Agent ID({$agentID})"; ?></h6>
 		</div>
 		<br><br>
 		<form class='form' name='agentForm' id='agentForm' onSubmit='return validateAgent()' method='post' action='create_agent.php'>

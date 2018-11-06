@@ -22,8 +22,10 @@ if (!empty($_POST)){
 
 }
 
+$result = $conn -> query("SHOW TABLE STATUS LIKE 'event'") -> fetch();
+$eventID = $result['Auto_increment'];
 
-createAgent($conn);
+createEvent($conn, $eventID);
 
 ?>
 
@@ -32,7 +34,7 @@ createAgent($conn);
 printFooter();
 
 
-function createAgent($conn){
+function createEvent($conn, $eventID){
 ?>
 	<script>
 		function switchArtistBand() {
@@ -46,8 +48,8 @@ function createAgent($conn){
 	</script>
 	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
-			<h4 style='display: inline; font-size: 45px'>Create New Event</h4>
-			<h6 style='display: inline; margin-left: 8px; font-size: 30px;'>Event ID</h6>
+			<h4 style='display: inline; font-size: 30px'>Create New Event</h4>
+			<h6 style='display: inline; margin-left: 8px; font-size: 18px;'><?php echo "Event ID({$eventID})"; ?></h6>
 		</div>
 		<br><br>
 		<form class='form' name='eventForm' action="create_event.php" method="post">
