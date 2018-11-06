@@ -167,7 +167,7 @@ CREATE TABLE status_report (
 	report_id INT PRIMARY KEY AUTO_INCREMENT, 
 	event_id INT, 
 	status VARCHAR(15), 
-	name CARCHAR(50), 
+	name VARCHAR(50), 
 	start_date DATE, 
 	capacity INT(11), 
 	tickets_sold INT(11), 

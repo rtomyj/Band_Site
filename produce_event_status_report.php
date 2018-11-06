@@ -3,7 +3,23 @@ require_once('common_php/header_footer.php');
 require_once('../includes/conn.php');
 
 printHeader("Home");
-produceEventStatus($conn);
+
+if (!empty($_POST)){
+	$startDate = $_POST['startDate'];
+	$endDate = $_POST['endDate'];
+
+	$sql = "select count(*) as total from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy WHERE event_date BETWEEN '{$startDate}' AND '{$endDate}'";
+
+
+	$result = $conn -> query($sql) -> fetch();
+	$totalRows = $result['total'];
+
+	if ($totalRows == '0')
+		showNoRows();
+	else
+		produceEventStatus($conn);
+}
+
 printFooter();
 
 function produceEventStatus($conn){
@@ -28,6 +44,9 @@ function produceEventStatus($conn){
 		if ($total >= 1)
 			$sql .= " where ";
 
+		$startDate = $_POST['startDate'];
+		$endDate = $_POST['endDate'];
+
 		foreach($_POST['generate'] as $filter){
 			$sql = $sql . " event_status = '{$filter}'";
 
@@ -36,6 +55,8 @@ function produceEventStatus($conn){
 
 			$current = $current + 1;
 		}
+
+		$sql .= " AND event_date BETWEEN '{$startDate}' AND '{$endDate}'";
 		$sql = $sql . " ORDER BY event_status, event_id";
 
 
@@ -63,6 +84,7 @@ function produceEventStatus($conn){
 		while ($result = $query -> fetch()){
 			$revenue = intval($result['tickets_sold']) * intval($result['concert_rate']) * .3;
 			$revenue = number_format($revenue, 2, '.', '');
+
 			echo "
 				<tr>
 				<td>{$result['event_id']}</td>
@@ -109,5 +131,20 @@ function produceEventStatus($conn){
 
 
 }
+
+function showNoRows(){
+	?>
+		<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
+		<div>
+			<h4 style='display: inline; font-size: 45px'>Event Status Report</h4>
+		</div>
+		<br><br>
+
+		<h6>No Events To Display With Given Filters.</h6>
+		</div>
+
+	<?php
+}
+
 
 ?>
