@@ -345,10 +345,10 @@ function showNeedsApproval($conn, $username){
 
 
 
-	</div>
 	<?php
 	}
 
+	echo "</div>";
 }
 
 function login($showFailedLogin){
