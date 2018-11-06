@@ -33,33 +33,36 @@ else{
 }
 
 function showNeedsApproval($conn, $username){
-	$sql = "SELECT * FROM event, manager WHERE event_manager = manager_id and email = '{$username}'";
-	echo $sql;
-
+	$sql = "SELECT * FROM event, manager WHERE event_manager = manager_id and email = '{$username}' and event_status='created'";
+        
+	echo "<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px' class='container-fluid'>";
+	echo "<div>";
+	echo "<h4 style='display: inline; font-size: 45px'>Approve Events</h4>";
+	echo "<h6 style='display: inline; margin-left: 8px; font-size: 30px;'>Signed In As: {$_SESSION['manager']}</h6>";
+	foreach($conn->query($sql) as $res){
 	?>
 
-	<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px' class='container-fluid'>
-		<div>
-			<h4 style='display: inline; font-size: 45px'>Approve Events</h4>
-			<h6 style='display: inline; margin-left: 8px; font-size: 30px;'>Signed In As: <?php echo $_SESSION['manager']?></h6>
 			
 			<div class='row'>
 				<div class='col-md-6 card'>
 					<div class='card-body'>
-						<h4 class='card-title'>Details</h4>
+					<h4 class='card-title'>Details</h4> <h5>(Event ID: <?php echo $res['event_id']; ?>)</h5>
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
 							<div class='col-md-6'>
 								<label>
-									Event ID:
+									Event Name:
 								</label>
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text'readonly value="<?php echo $res['event_name'] ?>">
 							</div>
-
+							<div class='col-md-6'> <label> ID: </label></div>
+							<div class='col-md-6'> 
+							<input type='text'readonly value="<?php echo $res['event_id'] ?>">
+							</div>
 						</div>
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
@@ -71,7 +74,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='date'>
+							<input type='date' readonly value="<?php echo $res['event_date']; ?>">
 							</div>
 
 						</div>
@@ -85,7 +88,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='time'>
+							<input type='time' readonly value="<?php echo $res['start_time']; ?>">
 							</div>
 
 						</div>
@@ -99,7 +102,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $res['capacity']; ?>">
 							</div>
 
 						</div>
@@ -111,7 +114,10 @@ function showNeedsApproval($conn, $username){
 					<div class='card-body'>
 						<h4 class='card-title'>Location</h4>
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
-
+							<?php 
+							$temp = $conn->query("select * from location where location_id = '{$res['event_location']}'");
+							$temp = $temp->fetch();
+							?>
 							<div class='col-md-6'>
 								<label>
 									Street:
@@ -119,7 +125,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['street']; ?>">
 							</div>
 
 						</div>
@@ -133,7 +139,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['city']; ?>">
 							</div>
 
 						</div>
@@ -147,7 +153,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['state']; ?>">
 							</div>
 
 						</div>
@@ -161,7 +167,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['zip']; ?>">
 							</div>
 
 						</div>
@@ -186,11 +192,28 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php if ($res['performer_type'] == 'B') echo 'Band'; else echo 'Artist'; ?>">
 							</div>
 
 						</div>
 
+							<?php 
+							if ($res['performer_type'] == 'B'){
+								$temp = $conn->query("select * from band where band_id = '{$res['band_id']}'");
+								$temp = $temp->fetch();
+								$name = $temp['band_name'];
+							}
+							else{
+								$temp = $conn->query("select * from artist where artist_id = '{$res['artist_id']}'");
+								$temp = $temp->fetch();
+								if($temp['middle_initial'] != "")
+									$name = "{$temp['first_name']} {$temp['middle_initial']} {$temp['last_name']}";
+								else 
+									$name = "{$temp['first_name']} {$temp['last_name']}";
+									
+							}
+
+							?>
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
 							<div class='col-md-6'>
@@ -200,7 +223,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $name; ?>">
 							</div>
 
 						</div>
@@ -214,7 +237,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['concert_rate']; ?>">
 							</div>
 
 						</div>
@@ -224,6 +247,11 @@ function showNeedsApproval($conn, $username){
 
 				<div class='col-md-6 card'>
 					<div class='card-body'>
+						<?php
+							$temp = "select vendor_name from vendor where vendor_id = '{$res['stage_vendor']}'";
+							$temp = $conn->query($temp);
+							$temp = $temp->fetch();
+						?>
 						<h4 class='card-title'>Vendors</h4>
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -234,10 +262,15 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['vendor_name']; ?>">
 							</div>
 
 						</div>
+						<?php
+							$temp = "select vendor_name from vendor where vendor_id = '{$res['equipment_vendor']}'";
+							$temp = $conn->query($temp);
+							$temp = $temp->fetch();
+						?>
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -248,10 +281,15 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['vendor_name']; ?>">
 							</div>
 
 						</div>
+						<?php
+							$temp = "select vendor_name from vendor where vendor_id = '{$res['lighting_vendor']}'";
+							$temp = $conn->query($temp);
+							$temp = $temp->fetch();
+						?>
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -262,10 +300,15 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['vendor_name']; ?>">
 							</div>
 
 						</div>
+						<?php
+							$temp = "select vendor_name from vendor where vendor_id = '{$res['sound_vendor']}'";
+							$temp = $conn->query($temp);
+							$temp = $temp->fetch();
+						?>
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -276,7 +319,7 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-								<input type='text'>
+							<input type='text' readonly value="<?php echo $temp['vendor_name']; ?>">
 							</div>
 
 						</div>
@@ -289,12 +332,13 @@ function showNeedsApproval($conn, $username){
 			<div class='row'>
 				<div class='col-md-12 card'>
 					<div class='card-body'>
-						<h4 class='card-title'>Notes</h4>
+					<h4 class='card-title'>Notes</h4> <p> <?php echo $res['notes']; ?>
 					</div>
 				</div>
 			</div>
 
 
+		<form > <input class = 'btn btn-success' type='submit' name='stat' value='approve'> </form>
 
 		</div>
 		<br><br>
@@ -303,6 +347,8 @@ function showNeedsApproval($conn, $username){
 
 	</div>
 	<?php
+	}
+
 }
 
 function login($showFailedLogin){
@@ -344,7 +390,7 @@ function login($showFailedLogin){
 		</div>
 	</div>
 	<br><br>
-	<?php
+<?php
 }
 
 printFooter();
