@@ -131,7 +131,7 @@ function createAgent($conn){
 							<p class='label'>Tickets Sold:</p>
 						</div>
 						<div class='col-md-2'>
-							<input type='text' name='ticketsSold' class='label' required>
+							<input type='text' name='ticketsSold' class='label' required value='0' readonly>
 						</div>
 
 					</div>
