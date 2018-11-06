@@ -202,20 +202,6 @@ function createAgent($conn){
 
 					<div class='row' style='margin-top: 16px; margin-bottom: 16px;'>
 
-<<<<<<< HEAD
-							<div class='col-md-2'>
-								<p class='label'>Vendors:</p>
-							</div>
-							<div class='col-md-6'>
-								<?php
-								$sql = 'select vendor_name, vendor_type from vendor';								
-								$query = $conn->query($sql);
-								while($result = $query->fetch()){
-									echo "<input type='checkbox' class='custom-checkbox' > {$result['vendor_name']} ({$result['vendor_type']}) <br>";
-								}
-								?>	
-							</div>
-=======
 						<div class='col-md-2'>
 							<p class='label'>Manager:</p>
 						</div>
@@ -237,7 +223,6 @@ function createAgent($conn){
 								?>
 							</select>
 						</div>
->>>>>>> 52035775edf74fc170dde3d9b6511b73cec5c291
 
 					</div>
 				</div>
