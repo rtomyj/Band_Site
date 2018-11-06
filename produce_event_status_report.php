@@ -2,10 +2,8 @@
 require_once('common_php/header_footer.php');
 require_once('../includes/conn.php');
 
-
 printHeader("Home");
 produceEventStatus($conn);
-
 printFooter();
 
 function produceEventStatus($conn){
@@ -57,7 +55,10 @@ function produceEventStatus($conn){
 			<tbody>
 
 		<?php
-
+		$delprev = "delete from status_report";
+		$stmt = $conn->prepare($delprev);
+		$stmt->execute();
+		$intoreport = "insert into status_report (event_id, status, name, start_date, capacity, tickets_sold, ticket_price, revenue) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		$query = $conn -> query($sql);
 		while ($result = $query -> fetch()){
 			$revenue = intval($result['tickets_sold']) * intval($result['concert_rate']) * .3;
@@ -74,6 +75,9 @@ function produceEventStatus($conn){
 				<td>\${$revenue}</td>
 				</tr>
 				";
+
+			$stmt = $conn->prepare($intoreport);
+			$stmt->execute(array($result['event_id'], $result['event_status'], $result['event_name'], $result['event_date'], $result['capacity'], $result['tickets_sold'], $result['concert_rate'], $revenue));
 		}
 
 		
@@ -85,6 +89,8 @@ function produceEventStatus($conn){
 		</div>
 		
 		</div>
+<form method="post" action='print_pdf.php'>
+<input type='hidden' name='newsql' value='select event_id, status, name, start_date, capacity, tickets_sold, ticket_price, revenue from status_report'>
 			<div class='row container-fluid' style='margin-top: 30px; margin-bottom: 30px'>
 				<div class='col-md-2'>
 					<button class='btn btn-outline-danger' type="button" onclick="window.location.href='index.php'">
@@ -92,14 +98,16 @@ function produceEventStatus($conn){
 					</button>
 				</div>
 				<div class='col-md-2 offset-md-8'>
-					<button class='btn btn-success' type="button" onclick="window.location.href='index.php'">
+				<button class='btn btn-success' type="submit">
 						Print
 					</button>
 				</div>
 			</div>
+</form>
 		<?php
 }
 
 
 }
 
+?>

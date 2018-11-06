@@ -1,15 +1,12 @@
-<<<<<<< HEAD
-/*DROP TABLE vendor;
-=======
+DROP TABLE status_report;
 DROP TABLE event;
 DROP TABLE vendor;
->>>>>>> 52035775edf74fc170dde3d9b6511b73cec5c291
 DROP TABLE location;
 DROP TABLE manager;
 DROP TABLE band;
 DROP TABLE artist;
 DROP TABLE agent;
-*/
+
 CREATE TABLE agent(
 	agent_id INT AUTO_INCREMENT,
 	first_name VARCHAR(25) NOT NULL,
@@ -128,9 +125,6 @@ CREATE TABLE vendor(
 INSERT INTO vendor
 (vendor_name, street, city, state, zip, vendor_type, email, representative_name, representative_phone_number, representative_email, speacial_notes)
 VALUES
-<<<<<<< HEAD
-()
-=======
 ('Stage Master', '167 S Main St', 'Chicago', 'IL', '60608', 'Stage Setup', 'stagemaster@gmail.com', 'Stacy Gwen', '7205734902', 'stacy@gmail.com', ''),
 ('Stages! Stages!! Stages!!!', '1491 W Central Blvd', 'Chicago', 'IL', '60608', 'Stage Setup', 'stages@gmail.com', 'Stan Roger', '7205736734', 'stanrog11@gmail.com', 'Works only with stages'),
 ('Concert Equipment Plus', '1451 Circle Ln', 'Chicago', 'IL', '60614', 'Equipment', 'concertequipmentplus@gmail.com', 'Dan Smith', '7208971001', 'dsmith12@gmail.com', ''),
@@ -168,4 +162,16 @@ CREATE TABLE event(
 	FOREIGN KEY(sound_vendor) REFERENCES vendor(vendor_id)
 
 );
->>>>>>> 52035775edf74fc170dde3d9b6511b73cec5c291
+
+CREATE TABLE status_report (
+	report_id INT PRIMARY KEY AUTO_INCREMENT, 
+	event_id INT, 
+	status VARCHAR(15), 
+	name CARCHAR(50), 
+	start_date DATE, 
+	capacity INT(11), 
+	tickets_sold INT(11), 
+	ticket_price DOUBLE(12, 2), 
+	revenue DOUBLE(12, 2)
+);
+
