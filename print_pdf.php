@@ -144,9 +144,9 @@ function Header()
 }
 }
 
-function printPDF($sql){
+function printPDF($sql, $host, $user, $password, $db){
 // Connect to database
-$link = mysqli_connect('courses','z1756868','1993Aug13','z1756868');
+$link = mysqli_connect($host,$user,$password,$db);
 $pdf = new PDF();
 $pdf->AddPage();
 //First table: output all columns
@@ -174,6 +174,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$sql = $_POST['newsql'];
 
-	printPDF($sql);
+	printPDF($sql, $host,$user, $password, $db);
 }
 ?>
