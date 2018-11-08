@@ -25,6 +25,17 @@ printFooter();
 function produceEventStatus($conn){
 	if (!empty($_POST)){
 		?>
+
+		<script>
+			$(document).ready(function(){
+			$("#filter").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#search_table tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			});
+		</script>
 		<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px'>
 		<div>
 			<h4 style='display: inline; font-size: 45px'>Event Status Report</h4>
@@ -33,9 +44,6 @@ function produceEventStatus($conn){
 		
 		
 		<?php
-
-		// select * from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy where event_status = 'Created'
-
 
 		$sql = "select * from ((select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, artist where event.artist_id = artist.artist_id) UNION (select event_id, performer_type, concert_rate, event_status, event_date, capacity, event_name, tickets_sold from event, band where event.band_id = band.band_id)) as BigBoy";
 		$total = count($_POST['generate']);
@@ -62,6 +70,7 @@ function produceEventStatus($conn){
 
 		?>
 		<div class='table-responsive-md' >
+		<input class="form-control" id="filter" type="text" placeholder="Filter..">
 		<table id='search_table' class='table table-borderless table-bordered'>
 			<thead class='thead-light'><tr>
 				<th>ID</th>

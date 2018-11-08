@@ -6,6 +6,7 @@ printHeader('GEM - Approve');
 
 
 $failedAttempt = false;
+
 if (!empty($_POST)){
 	if(!isset($_SESSION['manager'])){
 		$sql = "SELECT COUNT(*) AS total FROM manager WHERE email = '{$_POST['username']}' AND password = '{$_POST['password']}' ";
@@ -23,30 +24,69 @@ if (!empty($_POST)){
 	else
 		$showLogin = true;
 }
+
 if(!isset($_SESSION['manager']))
 	$showLogin = true;
 
 if ($showLogin)
 	login($failedAttempt);
+
 else{
-	showNeedsApproval($conn, $_SESSION['manager']);
+	$offset = 0;
+	if (!isset($_POST['previous']) && !isset($_POST['next']) && isset($_POST['eventID'])){
+		$offset = $_POST['offset'];
+		$sql = "UPDATE event SET event_status = 'Approved' WHERE event_id = {$_POST['eventID']}";
+		$conn -> exec($sql);
+		$offset--;
+		if ($offset < 0)
+			$offset = 0;
+
+	}
+	if (isset($_POST['next'])){
+		$offset = $_POST['offset'];
+		$offset = intval($offset);
+		$offset ++;
+	}
+	if (isset($_POST['previous'])){
+		$offset = $_POST['offset'];
+		$offset = intval($offset);
+		$offset --;
+	}
+
+	$username = $_SESSION['manager'];
+	$sql = "SELECT COUNT(*) AS total FROM event, manager WHERE event_manager = manager_id AND email = '{$username}' AND event_status='Created' ";
+	$result = $conn -> query($sql) -> fetch();
+	$total = $result['total'];
+	$total = intval($total);
+
+	if ($total != 0)
+		showNeedsApproval($conn, $username, $offset, $total);
+	else
+		noEventsNeedApproval($username);
 }
 
-function showNeedsApproval($conn, $username){
-	$sql = "SELECT * FROM event, manager WHERE event_manager = manager_id and email = '{$username}' and event_status='created'";
-        
+
+function showNeedsApproval($conn, $username, $offset, $total){
+	$plusOne = $offset + 1;
+	$sql = "SELECT * FROM event, manager WHERE event_manager = manager_id AND email = '{$username}' AND event_status='Created' LIMIT {$offset},{$plusOne}";
+
 	echo "<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px' class='container-fluid'>";
 	echo "<div>";
 	echo "<h4 style='display: inline; font-size: 30px'>Approve Events</h4>";
 	echo "<h6 style='display: inline; margin-left: 8px; font-size: 18px;'>Signed In As: {$_SESSION['manager']}</h6>";
-	foreach($conn->query($sql) as $res){
+	echo '</div>';
+
+	$res = $conn->query($sql) -> fetch();
+	$eventID = $res['event_id'];
+
 	?>
 
+			<br><br>
 			
-			<div class='row'>
+			<div class='row' style='margin-right: 15px;'>
 				<div class='col-md-6 card'>
 					<div class='card-body'>
-					<h4 class='card-title'>Details</h4> <h5>(Event ID: <?php echo $res['event_id']; ?>)</h5>
+					<h4 class='card-title'>Details</h4>
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -57,13 +97,18 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='text'readonly value="<?php echo $res['event_name'] ?>">
+								<input type='text' readonly value="<?php echo $res['event_name']; ?>">
 							</div>
-							<div class='col-md-6'> <label> ID: </label></div>
+							
+							<div class='col-md-6'>
+								<label>Event ID: </label>
+							</div>
+							
 							<div class='col-md-6'> 
-							<input type='text'readonly value="<?php echo $res['event_id'] ?>">
+								<input type='text' readonly value="<?php echo $res['event_id']; ?>">
 							</div>
 						</div>
+
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -74,10 +119,11 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='date' readonly value="<?php echo $res['event_date']; ?>">
+								<input type='date' readonly value="<?php echo $res['event_date']; ?>">
 							</div>
 
 						</div>
+
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -88,10 +134,11 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='time' readonly value="<?php echo $res['start_time']; ?>">
+								<input type='time' readonly value="<?php echo $res['start_time']; ?>">
 							</div>
 
 						</div>
+
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -102,13 +149,15 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='text' readonly value="<?php echo $res['capacity']; ?>">
+								<input type='text' readonly value="<?php echo $res['capacity']; ?>">
 							</div>
 
 						</div>
 
 					</div>
 				</div>
+
+
 
 				<div class='col-md-6 card'>
 					<div class='card-body'>
@@ -125,10 +174,11 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='text' readonly value="<?php echo $temp['street']; ?>">
+								<input type='text' readonly value="<?php echo $temp['street']; ?>">
 							</div>
 
 						</div>
+
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -139,10 +189,11 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='text' readonly value="<?php echo $temp['city']; ?>">
+								<input type='text' readonly value="<?php echo $temp['city']; ?>">
 							</div>
 
 						</div>
+
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -153,10 +204,11 @@ function showNeedsApproval($conn, $username){
 							</div>
 
 							<div class='col-md-6'>
-							<input type='text' readonly value="<?php echo $temp['state']; ?>">
+								<input type='text' readonly value="<?php echo $temp['state']; ?>">
 							</div>
 
 						</div>
+
 
 						<div class='row mx-auto' style='margin-top: 16px; margin-bottom: 16px'>
 
@@ -178,7 +230,7 @@ function showNeedsApproval($conn, $username){
 
 
 
-		<div class='row'>
+		<div class='row' style='margin-right: 15px; margin-top:30px'>
 				<div class='col-md-6 card'>
 					<div class='card-body'>
 						<h4 class='card-title'>Performer</h4>
@@ -329,7 +381,7 @@ function showNeedsApproval($conn, $username){
 			</div>
 
 
-			<div class='row'>
+			<div class='row' style='margin-right: 15px; margin-top: 30px;'> 
 				<div class='col-md-12 card'>
 					<div class='card-body'>
 					<h4 class='card-title'>Notes</h4> <p> <?php echo $res['notes']; ?>
@@ -338,7 +390,54 @@ function showNeedsApproval($conn, $username){
 			</div>
 
 
-		<form > <input class = 'btn btn-success' type='submit' name='stat' value='approve'> </form>
+
+			<form action='approve.php' method='post' id='approveForm'> 
+				<input type='hidden' name='eventID' value='<?php echo $eventID; ?>' > 
+				<input type='hidden' name='username' value='<?php echo $_POST['username']; ?>' > 
+				<input type='hidden' name='password' value='<?php echo $_POST['password']; ?>' >
+				<input type='hidden' name='offset' value='<?php echo $offset; ?>' >
+			</form>
+			<form action='approve.php' method='post' id='previousForm'> 
+				<input type='hidden' name='eventID' value='<?php echo $eventID; ?>' > 
+				<input type='hidden' name='username' value='<?php echo $_POST['username']; ?>' > 
+				<input type='hidden' name='password' value='<?php echo $_POST['password']; ?>' >
+				<input type='hidden' name='offset' value='<?php echo $offset; ?>' >
+				<input type='hidden' name='previous' value='previous' >
+			</form>
+			<form action='approve.php' method='post' id='nextForm'> 
+				<input type='hidden' name='eventID' value='<?php echo $eventID; ?>' > 
+				<input type='hidden' name='username' value='<?php echo $_POST['username']; ?>' > 
+				<input type='hidden' name='password' value='<?php echo $_POST['password']; ?>' >
+				<input type='hidden' name='offset' value='<?php echo $offset; ?>' >
+				<input type='hidden' name='next' value='next' >
+			</form>
+
+
+
+				<div class='row container-fluid' style='margin-top: 25px;'>
+					<div class='col-md-2'>
+						<?php
+							if ($offset > 0)
+								echo "<input type='submit' class='btn btn-outline-info' value='Previous' form='previousForm'>";
+						?>
+					</div>
+					<div class='col-md-2 offset-md-8'>
+						<?php
+							if ($offset != $total -1 )
+								echo "<input type='submit' class='btn btn-info' value='Next' form = 'nextForm'>";
+						?>
+					</div>
+				</div>
+
+				<div class='row container-fluid' style='margin-top: 10px;'>
+					<div class='col-md-2'>
+						<input class='btn btn-outline-danger' id="btntest" type="button" value="Cancel" onclick="window.location.href='index.php'">
+					</div>
+					<div class='col-md-2 offset-md-8'>
+						<input type='submit' class='btn btn-success' value='Approve Event' form='approveForm'>
+					</div>
+				</div>
+			</form>
 
 		</div>
 		<br><br>
@@ -346,7 +445,7 @@ function showNeedsApproval($conn, $username){
 
 
 	<?php
-	}
+	
 
 	echo "</div>";
 }
@@ -380,7 +479,7 @@ function login($showFailedLogin){
 						</div>
 						<?php
 							if ($showFailedLogin)
-								echo "<span style='color:red; margin-top:8px'>Wrong password, try again</span>";
+								echo "<span style='color:red; margin-top:8px'>Wrong username or password, try again</span>";
 						?>
 						<button style='margin-top:8px' class='btn btn-success col-md-12' type="submit">Login</button>
 					</div>
@@ -391,6 +490,21 @@ function login($showFailedLogin){
 	</div>
 	<br><br>
 <?php
+}
+
+function noEventsNeedApproval($username){
+	?>
+		<div style='margin-left: 15px; margin-right: 15px; margin-top: 15px' class='container-fluid'>
+		<div>
+			<h4 style='display: inline; font-size: 30px'>Approve Events</h4>
+			<h6 style='display: inline; margin-left: 8px; font-size: 18px;'>Signed In As: <?php echo $username; ?> </h6>
+		</div>
+		<br><br>
+
+		<h6>No Events Need Approval.</h6>
+		</div>
+
+	<?php
 }
 
 printFooter();

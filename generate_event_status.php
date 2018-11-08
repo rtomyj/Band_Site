@@ -60,7 +60,7 @@ function generateEvent(){
 								<p class='label'>End Date:</p>
 							</div>
 							<div class='col-sm-6'>
-								<input name='endDate' type='date' class='label' value="<?php echo date('Y-m-d');?>">
+								<input name='endDate' type='date' class='label' value="<?php echo date('Y-m-d', round(microtime(true) + (604800 * 2) ));?>">
 							</div>
 						</div>
 

@@ -28,7 +28,7 @@ function printHeader($title){
 	<body class='body body_attributes'>
 		<div class='justify-content-center w3-flat-belize-hole'>
 				<nav class='navbar navbar-expand-sm navbar-dark' >
-					<a class="navbar-brand" href="index.php"><img src="res/gem_logo.png" width="30" height="30" alt="" style='margin:right: 10px'>GEM System</a>
+					<a class="navbar-brand" href="index.php"><img src="res/gem_logo.png" width="30" height="30" alt="" style='margin-right: 10px'>GEM System</a>
 					<ul class='navbar-nav'>
 						<li class='nav-item active'>
 							<a HREF='index.php' class='nav-link'>Home</a>

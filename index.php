@@ -18,6 +18,8 @@ function index(){
 
 		<h6>Mangers: Don't forget to sign in if to approve events!</h6>
 	</div>
+
+	<br><br>
 	
 	<?php
 }
