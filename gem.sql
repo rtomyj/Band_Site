@@ -164,17 +164,17 @@ CREATE TABLE event(
 
 );
 INSERT INTO event
-(artist_id, band_id, performer_type, event_name, tickets_sold, date_created, event_date, start_time, event_location, capacity, event_manager, stage_vendor, lighting_vendor, sound_vendor, event_status, notes) VALUES
-(1, NULL, 'A', 'Guitars At The Park', 100, '2018-11-07 ', '2018-11-07 ', '08:00:00 ', 1, 400, 2, 1, 1, 2, 'Completed', 'Kick Ass'), 
-(NULL, 1, 'B', 'Evening Jam', 400, '2018-11-07 ', '2018-11-07 ', '08:30:00 ', 1, 400, 1, 1, 1, 2, 'Sold Out', 'Needs lots of booze'),
-(2, NULL, 'A', '2018 Tour', 50, '2018-11-04 ', '2018-12-02 ', '08:00:00 ', 1, 100, 1, 1, 2, 1, 'Advertised', ''),
-(NULL, 2, 'B', 'Winter Gig', 500, '2018-11-01 ', '2018-01-28 ', '09:00:00 ', 1, 1000, 2, 1, 1, 1, 'Approved', ''),
-(2, NULL, 'A', 'Rave Night', 250, '2018-11-02 ', '2018-11-29 ', '08:30:00 ', 1, 250, 2, 1, 1, 1, 'Sold Out', ''),
-(NULL, 1, 'B', '100% Fun', 1000, '2018-11-03 ', '2018-12-07 ', '10:30:00 ', 1, 2000, 1, 1, 1, 1, 'Created', ''),
-(2, NULL, 'A', 'Rock Out I', 31, '2018-11-03 ', '2018-11-15 ', '10:00:00 ', 1, 350, 2, 2, 2, 2, 'Created', 'Three day event'),
-(NULL, 2, 'B', 'Rock Out II', 12, '2018-11-04 ', '2018-11-16 ', '10:00:00 ', 1, 100, 1, 2, 1, 1, 'Created', 'Three day event'),
-(1, NULL, 'A', 'Rock Out III', 1, '2018-11-05 ', '2018-11-16 ', '10:00:00 ', 1, 1000, 1, 2, 2, 1, 'Canceled', 'Three day event'),
-(NULL, 1, 'B', 'The Event!!!', 709, '2018-11-06 ', '2018-11-07 ', '10:00:00 ', 1, 800, 2, 1, 1, 1, 'Approved', 'Kick Ass');
+(artist_id, band_id, performer_type, event_name, tickets_sold, date_created, event_date, start_time, event_location, capacity, event_manager, stage_vendor, equipment_vendor, lighting_vendor, sound_vendor, event_status, notes) VALUES
+(1, NULL, 'A', 'Guitars At The Park', 100, '2018-11-07 ', '2018-11-07 ', '08:00:00 ', 1, 400, 2, 1, 3, 4, 5, 'Completed', 'Kick Ass'), 
+(NULL, 1, 'B', 'Evening Jam', 400, '2018-11-07 ', '2018-11-07 ', '08:30:00 ', 2, 400, 1, 2, 3, 4, 5, 'Sold Out', 'Needs lots of booze'),
+(2, NULL, 'A', '2018 Tour', 50, '2018-11-04 ', '2018-12-02 ', '08:00:00 ', 2, 100, 1, 1, 3, 4, 6, 'Advertised', ''),
+(NULL, 2, 'B', 'Winter Gig', 500, '2018-11-01 ', '2018-01-28 ', '09:00:00 ', 1, 1000, 2, 2, 3, 4, 6, 'Approved', ''),
+(2, NULL, 'A', 'Rave Night', 250, '2018-11-02 ', '2018-11-29 ', '08:30:00 ', 1, 250, 2, 1, 3, 4, 5, 'Sold Out', ''),
+(NULL, 1, 'B', '100% Fun', 1000, '2018-11-03 ', '2018-12-07 ', '10:30:00 ', 2, 2000, 1, 1, 3, 4, 6, 'Created', ''),
+(2, NULL, 'A', 'Rock Out I', 31, '2018-11-03 ', '2018-11-15 ', '10:00:00 ', 1, 350, 2, 2, 3, 4, 6, 'Created', 'Three day event'),
+(NULL, 2, 'B', 'Rock Out II', 12, '2018-11-04 ', '2018-11-16 ', '10:00:00 ', 1, 100, 1, 2, 3, 4, 6, 'Created', 'Three day event'),
+(1, NULL, 'A', 'Rock Out III', 1, '2018-11-05 ', '2018-11-16 ', '10:00:00 ', 2, 1000, 1, 2, 3, 4, 6, 'Canceled', 'Three day event'),
+(NULL, 1, 'B', 'The Event!!!', 709, '2018-11-06 ', '2018-11-07 ', '10:00:00 ', 3, 800, 2, 1, 3, 4, 5, 'Approved', 'Kick Ass');
 
 CREATE TABLE status_report (
 	report_id INT PRIMARY KEY AUTO_INCREMENT, 
